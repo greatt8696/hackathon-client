@@ -14,14 +14,12 @@ function App() {
   getTradeSocket(dispatch)
 
   return (
-    <Provider store={store}>
       <RecoilRoot>
         <BrowserRouter>
           <Router />
           <ScrollToTop />
         </BrowserRouter>
       </RecoilRoot>
-    </Provider>
   );
 }
 
