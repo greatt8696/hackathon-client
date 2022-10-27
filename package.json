@@ -43,6 +43,7 @@
     "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
     "simplebar": "^5.3.6",
+    "socket.io-client": "^4.5.3",
     "tabulator-tables": "^4.9.3",
     "tiny-slider": "^2.9.3",
     "tippy.js": "^6.2.7",

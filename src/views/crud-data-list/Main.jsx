@@ -8,14 +8,23 @@ import {
   DropdownItem,
   Modal,
   ModalBody,
-} from "@/base-components";
-import { faker as $f } from "@/utils";
-import * as $_ from "lodash";
-import { useState } from "react";
-import classnames from "classnames";
+} from '@/base-components'
+import { faker as $f } from '@/utils'
+import * as $_ from 'lodash'
+import { useEffect, useState } from 'react'
+import classnames from 'classnames'
+import { useSelector } from 'react-redux'
 
 function Main() {
-  const [deleteConfirmationModal, setDeleteConfirmationModal] = useState(false);
+  const [deleteConfirmationModal, setDeleteConfirmationModal] = useState(false)
+
+  const assetTransactions = useSelector(
+    (state) => state.transferAssetReducer.assetTransactions,
+  )
+
+  useEffect(() => {
+    console.log(assetTransactions)
+  }, [assetTransactions])
 
   return (
     <>
@@ -77,71 +86,41 @@ function Main() {
               </tr>
             </thead>
             <tbody>
-              {$_.take($f(), 9).map((faker, fakerKey) => (
-                <tr key={fakerKey} className="intro-x">
-                  <td className="w-40">
-                    <div className="flex">
-                      <div className="w-10 h-10 image-fit zoom-in">
-                        <Tippy
-                          tag="img"
-                          alt="Midone Tailwind HTML Admin Template"
-                          className="rounded-full"
-                          src={faker.images[0]}
-                          content={`Uploaded at ${faker.dates[0]}`}
-                        />
-                      </div>
-                      <div className="w-10 h-10 image-fit zoom-in -ml-5">
-                        <Tippy
-                          tag="img"
-                          alt="Midone Tailwind HTML Admin Template"
-                          className="rounded-full"
-                          src={faker.images[1]}
-                          content={`Uploaded at ${faker.dates[1]}`}
-                        />
-                      </div>
-                      <div className="w-10 h-10 image-fit zoom-in -ml-5">
-                        <Tippy
-                          tag="img"
-                          alt="Midone Tailwind HTML Admin Template"
-                          className="rounded-full"
-                          src={faker.images[2]}
-                          content={`Uploaded at ${faker.dates[2]}`}
-                        />
-                      </div>
-                    </div>
-                  </td>
+              {assetTransactions.map((assetTransaction, idx) => (
+                <tr key={idx} className="intro-x">
+                  <td className="w-40"></td>
                   <td>
                     <a href="" className="font-medium whitespace-nowrap">
-                      {faker.products[0].name}
+                      {JSON.stringify(assetTransaction.fromWM)}
                     </a>
                     <div className="text-slate-500 text-xs whitespace-nowrap mt-0.5">
-                      {faker.products[0].category}
+                      {JSON.stringify(assetTransaction.toWM)}
                     </div>
                   </td>
-                  <td className="text-center">{faker.stocks[0]}</td>
+                  <td className="text-center">
+                    {JSON.stringify(assetTransaction.balance)}
+                  </td>
                   <td className="w-40">
                     <div
                       className={classnames({
-                        "flex items-center justify-center": true,
-                        "text-success": faker.trueFalse[0],
-                        "text-danger": !faker.trueFalse[0],
+                        'flex items-center justify-center': true,
                       })}
                     >
                       <Lucide icon="CheckSquare" className="w-4 h-4 mr-2" />
-                      {faker.trueFalse[0] ? "Active" : "Inactive"}
+                      {JSON.stringify(assetTransaction.ticker)}
                     </div>
                   </td>
                   <td className="table-report__action w-56">
                     <div className="flex justify-center items-center">
                       <a className="flex items-center mr-3" href="#">
-                        <Lucide icon="CheckSquare" className="w-4 h-4 mr-1" />{" "}
+                        <Lucide icon="CheckSquare" className="w-4 h-4 mr-1" />{' '}
                         Edit
                       </a>
                       <a
                         className="flex items-center text-danger"
                         href="#"
                         onClick={() => {
-                          setDeleteConfirmationModal(true);
+                          setDeleteConfirmationModal(true)
                         }}
                       >
                         <Lucide icon="Trash2" className="w-4 h-4 mr-1" /> Delete
@@ -218,7 +197,7 @@ function Main() {
       <Modal
         show={deleteConfirmationModal}
         onHidden={() => {
-          setDeleteConfirmationModal(false);
+          setDeleteConfirmationModal(false)
         }}
       >
         <ModalBody className="p-0">
@@ -237,7 +216,7 @@ function Main() {
             <button
               type="button"
               onClick={() => {
-                setDeleteConfirmationModal(false);
+                setDeleteConfirmationModal(false)
               }}
               className="btn btn-outline-secondary w-24 mr-1"
             >
@@ -251,7 +230,7 @@ function Main() {
       </Modal>
       {/* END: Delete Confirmation Modal */}
     </>
-  );
+  )
 }
 
-export default Main;
+export default Main
