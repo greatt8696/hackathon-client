@@ -1,3 +1,4 @@
+
 import ScrollToTop from '@/base-components/scroll-to-top/Main'
 import { useDispatch } from 'react-redux'
 import { BrowserRouter } from 'react-router-dom'
@@ -13,13 +14,15 @@ function App() {
   getTradeSocket(dispatch)
 
   return (
-    <RecoilRoot>
-      <BrowserRouter>
-        <Router />
-        <ScrollToTop />
-      </BrowserRouter>
-    </RecoilRoot>
-  )
+    <Provider store={store}>
+      <RecoilRoot>
+        <BrowserRouter>
+          <Router />
+          <ScrollToTop />
+        </BrowserRouter>
+      </RecoilRoot>
+    </Provider>
+  );
 }
 
 export default App
