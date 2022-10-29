@@ -142,7 +142,7 @@ const Test = () => {
   const coinsPrice = useSelector((state) => state.coinReducer.coinsPrice)
 
   useEffect(() => {
-    console.log(coinsPrice)
+    //console.log(coinsPrice)
   }, [coinsPrice])
 
   return (

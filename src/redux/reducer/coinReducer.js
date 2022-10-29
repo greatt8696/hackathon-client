@@ -35,7 +35,6 @@ const coinReducer = (state = initState, action) => {
 
   switch (type) {
     case "UPDATE_COIN":
-
       return {
         ...state,
         coinsPrice: state.coinsPrice.map((coin) => {
