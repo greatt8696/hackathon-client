@@ -6,6 +6,7 @@ import DashboardOverview1 from '../views/dashboard-overview-1/Main'
 import DashboardOverview2 from '../views/dashboard-overview-2/Main'
 import DashboardOverview3 from '../views/dashboard-overview-3/Main'
 import DashboardOverview4 from '../views/dashboard-overview-4/Main'
+import DashboardOverviewMain from '../views/dashboard-overview-Main/Main'
 import Categories from '../views/categories/Main'
 import AddProduct from '../views/add-product/Main'
 import ProductList from '../views/product-list/Main'
@@ -80,7 +81,11 @@ function Router() {
       children: [
         {
           path: '/',
-          element: <DashboardOverview4 />,
+          element: <DashboardOverviewMain />,
+        },
+        {
+          path: 'dashboard-overview-1',
+          element: <DashboardOverview1 />,
         },
         {
           path: 'dashboard-overview-2',
