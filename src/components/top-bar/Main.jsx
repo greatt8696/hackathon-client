@@ -15,6 +15,8 @@ import { faker as $f } from "@/utils";
 import * as $_ from "lodash";
 import classnames from "classnames";
 import PropTypes from "prop-types";
+import InfinityLogo from "./img/인피니티.png";
+import mainProfile from "./img/mainprofile.png";
 
 function Main(props) {
   const [searchDropdown, setSearchDropdown] = useState(false);
@@ -35,42 +37,53 @@ function Main(props) {
           {/* BEGIN: Logo */}
           <Link
             to="/"
-            className="logo -intro-x hidden md:flex xl:w-[180px] block"
+            className="logo -intro-x w-50 whitespace-nowrap md:flex xl:w-[180px] block"
           >
             <img
               alt="Enigma Tailwind HTML Admin Template"
-              className="logo__image w-6"
-              src={logoUrl}
+              className="logo__image w-24 h-24 min-w-24 mb-1"
+              src={InfinityLogo}
             />
-            <span className="logo__text text-white text-lg ml-3"> Enigma </span>
+            <div className="logo__text text-white text-2xl font-bold  mt-8 w-60">
+              INFINITY TEAM
+            </div>
           </Link>
           {/* END: Logo */}
           {/* BEGIN: Breadcrumb */}
-          <nav aria-label="breadcrumb" className="-intro-x h-[45px] mr-auto">
-            <ol className="breadcrumb breadcrumb-light">
-              <li className="breadcrumb-item">
-                <a href="#">Application</a>
+          <nav
+            aria-label="breadcrumb"
+            className="-intro-x h-[45px] mx-auto flex justify-between w-full"
+          >
+            <ol className="breadcrumb breadcrumb-light flew w-full justify-between">
+              <li className="ml-10 text-2xl font-bold "></li>
+              <li className="ml-10 text-2xl font-bold md:text-xl">
+                스마트시티 ESG 친환경 플랫폼
               </li>
-              <li className="breadcrumb-item active" aria-current="page">
+              <li className="breadcrumb-item ml-30 text-2xl font-bold md:text-xl">
+                <a href="#">K-Green Recycle V 1.0</a>
+              </li>
+              {/* <li className="breadcrumb-item active" aria-current="page">
                 Dashboard
-              </li>
+              </li> */}
             </ol>
           </nav>
           {/* END: Breadcrumb */}
           {/* BEGIN: Search */}
           <div className="intro-x relative mr-3 sm:mr-6">
             <div className="search hidden sm:block">
-              <input
+              {/* ===============================================원래 인풋창 자리 */}
+              {/* <input
                 type="text"
                 className="search__input form-control border-transparent"
                 placeholder="Search..."
                 onFocus={showSearchDropdown}
                 onBlur={hideSearchDropdown}
-              />
-              <Lucide
+              /> */}
+              {/* <Lucide
                 icon="Search"
                 className="search__icon dark:text-slate-500"
-              />
+              /> */}
+              {/* ===============================================원래 인풋창 자리 */}
             </div>
             <a className="notification sm:hidden" href="">
               <Lucide
@@ -207,7 +220,7 @@ function Main(props) {
             >
               <img
                 alt="Midone Tailwind HTML Admin Template"
-                src={$f()[9].photos[0]}
+                src={mainProfile}
               />
             </DropdownToggle>
             <DropdownMenu className="w-56">

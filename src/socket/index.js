@@ -1,14 +1,39 @@
 import { io } from "socket.io-client";
 
+// const userSocket = io("ws://192.168.0.106:3636/user");
+// const tradeSocket = io("ws://192.168.0.106:3636/trade");
+// const socket = io("ws://192.168.0.106:3636");
 const userSocket = io("ws://localhost:3636/user");
 const tradeSocket = io("ws://localhost:3636/trade");
 const socket = io("ws://localhost:3636");
 
 function getTradeSocket(dispatch) {
-  tradeSocket.on("trade", (arg) => {
-    console.log(dispatch);
+  tradeSocket.on("order", (arg) => {
+    
   });
-  return userSocket;
+  tradeSocket.on("price", (arg) => {
+    const {
+      code,
+      trade_price,
+      change,
+      change_rate,
+      change_price,
+      acc_trade_price_24h,
+    } = arg;
+    const newData = {
+      code,
+      trade_price,
+      change,
+      change_rate,
+      change_price,
+      acc_trade_price_24h,
+    };
+    dispatch({ type: "UPDATE_COIN", payload: newData });
+  });
+  tradeSocket.on("candle", (arg) => {
+    dispatch({ type: "UPDATE_CANDLE", payload: arg });
+  });
+  return tradeSocket;
 }
 
 function getUserSocket(dispatch) {
