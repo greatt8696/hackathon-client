@@ -283,8 +283,10 @@ module.exports = {
         "wiggle-once": "wiggle 0.2s ease-in-out 1",
         "blink-red": "blink-red 0.2s ease-in-out 1",
         "blink-blue": "blink-blue 0.2s ease-in-out 1",
-        "blink-text-red": "blink-text-red 0.2s ease-in-out 1",
-        "blink-text-blue": "blink-text-blue 0.2s ease-in-out 1",
+        "blink-border-red": "blink-border-red 0.2s linear 1",
+        "blink-border-blue": "blink-border-blue 0.2s linear 1",
+        "blink-text-red": "blink-text-red 0.2s linear 1",
+        "blink-text-blue": "blink-text-blue 0.2s linear 1",
         "blink-ba-red": "blink-ba-red 0.3s ease-in-out 1",
         "blink-ba-blue": "blink-ba-blue 0.3s ease-in-out 1",
         "ping-once": "ping-once 0.8s ease 1",
@@ -308,6 +310,18 @@ module.exports = {
             "background-color": "transparent",
           },
           "50%": { "background-color": "#e6285a", },
+        },
+        "blink-border-blue": {
+          "0%, 100%": {
+            "border-color": "transparent",
+          },
+          "50%": { "border-color": "#1d5cc5", },
+        },
+        "blink-border-red": {
+          "0%, 100%": {
+            "border-color": "transparent",
+          },
+          "50%": { "border-color": "#e6285a", },
         },
 
         "blink-bar-blue": {
