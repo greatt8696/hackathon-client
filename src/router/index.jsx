@@ -6,6 +6,8 @@ import DashboardOverview1 from '../views/dashboard-overview-1/Main'
 import DashboardOverview2 from '../views/dashboard-overview-2/Main'
 import DashboardOverview3 from '../views/dashboard-overview-3/Main'
 import DashboardOverview4 from '../views/dashboard-overview-4/Main'
+import DashboardOverview5 from '../views/dashboard-overview-5/Main'
+import DashboardOverview6 from '../views/dashboard-overview-6/Main'
 import DashboardOverviewMain from '../views/dashboard-overview-Main/Main'
 import Categories from '../views/categories/Main'
 import AddProduct from '../views/add-product/Main'
@@ -97,7 +99,15 @@ function Router() {
         },
         {
           path: 'dashboard-overview-4',
-          element: <DashboardOverview1 />,
+          element: <DashboardOverview4 />,
+        },
+        {
+          path: 'dashboard-overview-5',
+          element: <DashboardOverview5 />,
+        },
+        {
+          path: 'dashboard-overview-6',
+          element: <DashboardOverview6 />,
         },
         {
           path: 'categories',

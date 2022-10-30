@@ -32,6 +32,16 @@ const sideMenu = atom({
             pathname: "/dashboard-overview-4",
             title: "대구 거래소",
           },
+          {
+            icon: "Home",
+            pathname: "/dashboard-overview-5",
+            title: "광주 거래소",
+          },
+          {
+            icon: "Home",
+            pathname: "/dashboard-overview-6",
+            title: "부산 거래소",
+          },
         ],
       },
       {
@@ -72,7 +82,7 @@ const sideMenu = atom({
       },
       {
         icon: "Users",
-        title: "유저",
+        title: "유저관리",
         subMenu: [
           {
             icon: "",

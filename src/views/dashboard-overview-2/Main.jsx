@@ -70,8 +70,8 @@ function Main() {
             {/* BEGIN: General Report */}
             <div className="col-span-12 lg:col-span-8 xl:col-span-6 mt-2">
               <div className="intro-y block sm:flex items-center h-10">
-                <h2 className="text-lg font-medium truncate mr-5">
-                  General Report
+                <h2 className="text-base font-bold truncate mr-5 ">
+                  인천 거래소
                 </h2>
                 <select className="sm:ml-auto mt-3 sm:mt-0 sm:w-auto form-select box">
                   <option value="daily">Daily</option>

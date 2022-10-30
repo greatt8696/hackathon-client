@@ -1,7 +1,7 @@
 import React, { useCallback, useState } from 'react'
 import { useEffect } from 'react'
 import { useSelector } from 'react-redux'
-// import { List  } from "react-virtualized";
+import { List  } from "react-virtualized";
 import Test from './Test'
 const Main = () => {
   const assetTransactions = useSelector(
@@ -29,17 +29,18 @@ const Main = () => {
     },
     [assetTransactions, listItem],
   )
-  return <div></div>
+  return (
+    <List
+      className="Main"
+      width={1622}
+      height={1500}
+      rowCount={assetTransactions.length}
+      rowHeight={64}
+      rowRenderer={rowRenderer}
+      list={assetTransactions}
+      style={{ outline: 'none' }}
+    />
+  )
 }
-//<List
-//className="Main"
-//width={1622}
-//height={1500}
-//rowCount={assetTransactions.length}
-//rowHeight={64}
-//rowRenderer={rowRenderer}
-//list={assetTransactions}
-//style={{ outline: "none" }}
-///>
 
 export default React.memo(Main)
