@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 
 const Pointer = (props) => {
-  //console.log('@@@@@@@@@@', props.coinsPrice)
   const {
     code,
     trade_price,

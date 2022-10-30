@@ -45,14 +45,14 @@ const PricePanel = (props) => {
   }
 
   useEffect(() => {
-    panelRef.current.classList.add('animate-wiggle-once')
+    //panelRef.current.classList.add('animate-wiggle-once')
     upDown === '+'
       ? panelRef.current.classList.add('animate-blink-red')
       : panelRef.current.classList.add('animate-blink-blue')
   }, [trade_price])
 
   const anmatieEndHandler = () => {
-    panelRef.current.classList.remove('animate-wiggle-once')
+    //panelRef.current.classList.remove('animate-wiggle-once')
     panelRef.current.classList.remove('animate-blink-red')
     panelRef.current.classList.remove('animate-blink-blue')
   }
