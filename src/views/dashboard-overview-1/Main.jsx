@@ -24,8 +24,12 @@ import { useRef } from 'react'
 import womanIllustrationUrl from '@/assets/images/woman-illustration.svg'
 import phoneIllustrationUrl from '@/assets/images/phone-illustration.svg'
 import CandleChart from '../../components/candleChart/CandleChart'
+import { useDispatch, useSelector } from 'react-redux'
+import PricePanel from '../../components/PricePanel'
 
 function Main() {
+  const dispatch = useDispatch()
+  const coinsPrice = useSelector((state) => state.coinReducer.coinsPrice)
   const importantNotesRef = useRef()
   const prevImportantNotes = () => {
     importantNotesRef.current.tns.goTo('prev')
@@ -44,17 +48,7 @@ function Main() {
               <Alert className="box bg-primary text-white flex items-center mb-6">
                 {({ dismiss }) => (
                   <>
-                    <span>
-                      Introducing new dashboard! Download now at
-                      <a
-                        href="https://themeforest.net/item/midone-jquery-tailwindcss-html-admin-template/26366820"
-                        className="underline ml-1"
-                        target="blank"
-                      >
-                        themeforest.net
-                      </a>
-                      .
-                    </span>
+                    <span>인피니티팀-시연 페이지입니다.</span>
                     <button
                       type="button"
                       className="btn-close text-white"
@@ -211,6 +205,13 @@ function Main() {
                   code={'KRW-BTC'}
                 ></CandleChart>
               </div>
+              <div className="intro-y box p-5 mt-12 sm:mt-5">
+                <div>거래소 차트</div>
+                <CandleChart
+                  exchange={'인천거래소'}
+                  code={'KRW-ETH'}
+                ></CandleChart>
+              </div>
             </div>
             {/* END: Official Store */}
             {/* BEGIN: Visitors */}
@@ -349,33 +350,6 @@ function Main() {
               </div>
             </div>
             {/* END: Users By Age */}
-            {/* BEGIN: Official Store */}
-            <div className="col-span-12 lg:col-span-8 mt-6">
-              <div className="intro-y block sm:flex items-center h-10">
-                <h2 className="text-lg font-medium truncate mr-5">
-                  Official Store
-                </h2>
-                <div className="sm:ml-auto mt-3 sm:mt-0 relative text-slate-500">
-                  <Lucide
-                    icon="MapPin"
-                    className="w-4 h-4 z-10 absolute my-auto inset-y-0 ml-3 left-0"
-                  />
-                  <input
-                    type="text"
-                    className="form-control sm:w-56 box pl-10"
-                    placeholder="Filter by city"
-                  />
-                </div>
-              </div>
-              <div className="intro-y box p-5 mt-12 sm:mt-5">
-                <div>
-                  250 Official stores in 21 countries, click the marker to see
-                  location details.
-                </div>
-                <ReportMap className="report-maps mt-5 bg-slate-200 rounded-md" />
-              </div>
-            </div>
-            {/* END: Official Store */}
             {/* BEGIN: Weekly Best Sellers */}
             <div className="col-span-12 xl:col-span-4 mt-6">
               <div className="intro-y flex items-center h-10">
@@ -649,449 +623,17 @@ function Main() {
           <div className="2xl:border-l -mb-10 pb-10">
             <div className="2xl:pl-6 grid grid-cols-12 gap-x-6 2xl:gap-x-0 gap-y-6">
               {/* BEGIN: Important Notes */}
-              <div className="col-span-12 md:col-span-6 xl:col-span-12 mt-3 2xl:mt-8">
-                <div className="intro-x flex items-center h-10">
-                  <h2 className="text-lg font-medium truncate mr-auto">
-                    Important Notes
-                  </h2>
-                  <button
-                    data-carousel="important-notes"
-                    data-target="prev"
-                    className="tiny-slider-navigator btn px-2 border-slate-300 text-slate-600 dark:text-slate-300 mr-2"
-                    onClick={prevImportantNotes}
-                  >
-                    <Lucide icon="ChevronLeft" className="w-4 h-4" />
-                  </button>
-                  <button
-                    data-carousel="important-notes"
-                    data-target="next"
-                    className="tiny-slider-navigator btn px-2 border-slate-300 text-slate-600 dark:text-slate-300 mr-2"
-                    onClick={nextImportantNotes}
-                  >
-                    <Lucide icon="ChevronRight" className="w-4 h-4" />
-                  </button>
-                </div>
-                <div className="mt-5 intro-x">
-                  <div className="box zoom-in">
-                    <TinySlider
-                      getRef={(el) => {
-                        importantNotesRef.current = el
-                      }}
-                    >
-                      <div className="p-5">
-                        <div className="text-base font-medium truncate">
-                          Lorem Ipsum is simply dummy text
-                        </div>
-                        <div className="text-slate-400 mt-1">20 Hours ago</div>
-                        <div className="text-slate-500 text-justify mt-1">
-                          Lorem Ipsum is simply dummy text of the printing and
-                          typesetting industry. Lorem Ipsum has been the
-                          industry's standard dummy text ever since the 1500s.
-                        </div>
-                        <div className="font-medium flex mt-5">
-                          <button
-                            type="button"
-                            className="btn btn-secondary py-1 px-2"
-                          >
-                            View Notes
-                          </button>
-                          <button
-                            type="button"
-                            className="btn btn-outline-secondary py-1 px-2 ml-auto"
-                          >
-                            Dismiss
-                          </button>
-                        </div>
-                      </div>
-                      <div className="p-5">
-                        <div className="text-base font-medium truncate">
-                          Lorem Ipsum is simply dummy text
-                        </div>
-                        <div className="text-slate-400 mt-1">20 Hours ago</div>
-                        <div className="text-slate-500 text-justify mt-1">
-                          Lorem Ipsum is simply dummy text of the printing and
-                          typesetting industry. Lorem Ipsum has been the
-                          industry's standard dummy text ever since the 1500s.
-                        </div>
-                        <div className="font-medium flex mt-5">
-                          <button
-                            type="button"
-                            className="btn btn-secondary py-1 px-2"
-                          >
-                            View Notes
-                          </button>
-                          <button
-                            type="button"
-                            className="btn btn-outline-secondary py-1 px-2 ml-auto"
-                          >
-                            Dismiss
-                          </button>
-                        </div>
-                      </div>
-                      <div className="p-5">
-                        <div className="text-base font-medium truncate">
-                          Lorem Ipsum is simply dummy text
-                        </div>
-                        <div className="text-slate-400 mt-1">20 Hours ago</div>
-                        <div className="text-slate-500 text-justify mt-1">
-                          Lorem Ipsum is simply dummy text of the printing and
-                          typesetting industry. Lorem Ipsum has been the
-                          industry's standard dummy text ever since the 1500s.
-                        </div>
-                        <div className="font-medium flex mt-5">
-                          <button
-                            type="button"
-                            className="btn btn-secondary py-1 px-2"
-                          >
-                            View Notes
-                          </button>
-                          <button
-                            type="button"
-                            className="btn btn-outline-secondary py-1 px-2 ml-auto"
-                          >
-                            Dismiss
-                          </button>
-                        </div>
-                      </div>
-                    </TinySlider>
-                  </div>
-                </div>
+              <div className="mt-5 col-span-12">
+                {coinsPrice.map((coin) => (
+                  <PricePanel
+                    key={coin.code}
+                    coin={coin}
+                    setIsSelect={false}
+                    isSelect={false}
+                  />
+                ))}
               </div>
               {/* END: Important Notes */}
-              {/* BEGIN: Recent Activities */}
-              <div className="col-span-12 md:col-span-6 xl:col-span-4 2xl:col-span-12 mt-3">
-                <div className="intro-x flex items-center h-10">
-                  <h2 className="text-lg font-medium truncate mr-5">
-                    Recent Activities
-                  </h2>
-                  <a href="" className="ml-auto text-primary truncate">
-                    Show More
-                  </a>
-                </div>
-                <div className="mt-5 relative before:block before:absolute before:w-px before:h-[85%] before:bg-slate-200 before:dark:bg-darkmode-400 before:ml-5 before:mt-5">
-                  <div className="intro-x relative flex items-center mb-3">
-                    <div className="before:block before:absolute before:w-20 before:h-px before:bg-slate-200 before:dark:bg-darkmode-400 before:mt-5 before:ml-5">
-                      <div className="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
-                        <img
-                          alt="Midone Tailwind HTML Admin Template"
-                          src={$f()[9].photos[0]}
-                        />
-                      </div>
-                    </div>
-                    <div className="box px-5 py-3 ml-4 flex-1 zoom-in">
-                      <div className="flex items-center">
-                        <div className="font-medium">
-                          {$f()[9].users[0].name}
-                        </div>
-                        <div className="text-xs text-slate-500 ml-auto">
-                          07:00 PM
-                        </div>
-                      </div>
-                      <div className="text-slate-500 mt-1">
-                        Has joined the team
-                      </div>
-                    </div>
-                  </div>
-                  <div className="intro-x relative flex items-center mb-3">
-                    <div className="before:block before:absolute before:w-20 before:h-px before:bg-slate-200 before:dark:bg-darkmode-400 before:mt-5 before:ml-5">
-                      <div className="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
-                        <img
-                          alt="Midone Tailwind HTML Admin Template"
-                          src={$f()[8].photos[0]}
-                        />
-                      </div>
-                    </div>
-                    <div className="box px-5 py-3 ml-4 flex-1 zoom-in">
-                      <div className="flex items-center">
-                        <div className="font-medium">
-                          {$f()[8].users[0].name}
-                        </div>
-                        <div className="text-xs text-slate-500 ml-auto">
-                          07:00 PM
-                        </div>
-                      </div>
-                      <div className="text-slate-500">
-                        <div className="mt-1">Added 3 new photos</div>
-                        <div className="flex mt-2">
-                          <Tippy
-                            tag="div"
-                            className="w-8 h-8 image-fit mr-1 zoom-in"
-                            content={$f()[0].products[0].name}
-                          >
-                            <img
-                              alt="Midone Tailwind HTML Admin Template"
-                              className="rounded-md border border-white"
-                              src={$f()[8].images[0]}
-                            />
-                          </Tippy>
-                          <Tippy
-                            tag="div"
-                            className="w-8 h-8 image-fit mr-1 zoom-in"
-                            content={$f()[1].products[0].name}
-                          >
-                            <img
-                              alt="Midone Tailwind HTML Admin Template"
-                              className="rounded-md border border-white"
-                              src={$f()[8].images[1]}
-                            />
-                          </Tippy>
-                          <Tippy
-                            tag="div"
-                            className="w-8 h-8 image-fit mr-1 zoom-in"
-                            content={$f()[2].products[0].name}
-                          >
-                            <img
-                              alt="Midone Tailwind HTML Admin Template"
-                              className="rounded-md border border-white"
-                              src={$f()[8].images[2]}
-                            />
-                          </Tippy>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="intro-x text-slate-500 text-xs text-center my-4">
-                    12 November
-                  </div>
-                  <div className="intro-x relative flex items-center mb-3">
-                    <div className="before:block before:absolute before:w-20 before:h-px before:bg-slate-200 before:dark:bg-darkmode-400 before:mt-5 before:ml-5">
-                      <div className="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
-                        <img
-                          alt="Midone Tailwind HTML Admin Template"
-                          src={$f()[7].photos[0]}
-                        />
-                      </div>
-                    </div>
-                    <div className="box px-5 py-3 ml-4 flex-1 zoom-in">
-                      <div className="flex items-center">
-                        <div className="font-medium">
-                          {$f()[7].users[0].name}
-                        </div>
-                        <div className="text-xs text-slate-500 ml-auto">
-                          07:00 PM
-                        </div>
-                      </div>
-                      <div className="text-slate-500 mt-1">
-                        Has changed{' '}
-                        <a className="text-primary" href="">
-                          {$f()[7].products[0].name}
-                        </a>{' '}
-                        price and description
-                      </div>
-                    </div>
-                  </div>
-                  <div className="intro-x relative flex items-center mb-3">
-                    <div className="before:block before:absolute before:w-20 before:h-px before:bg-slate-200 before:dark:bg-darkmode-400 before:mt-5 before:ml-5">
-                      <div className="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
-                        <img
-                          alt="Midone Tailwind HTML Admin Template"
-                          src={$f()[6].photos[0]}
-                        />
-                      </div>
-                    </div>
-                    <div className="box px-5 py-3 ml-4 flex-1 zoom-in">
-                      <div className="flex items-center">
-                        <div className="font-medium">
-                          {$f()[6].users[0].name}
-                        </div>
-                        <div className="text-xs text-slate-500 ml-auto">
-                          07:00 PM
-                        </div>
-                      </div>
-                      <div className="text-slate-500 mt-1">
-                        Has changed{' '}
-                        <a className="text-primary" href="">
-                          {$f()[6].products[0].name}
-                        </a>{' '}
-                        description
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {/* END: Recent Activities */}
-              {/* BEGIN: Transactions */}
-              <div className="col-span-12 md:col-span-6 xl:col-span-4 2xl:col-span-12 mt-3">
-                <div className="intro-x flex items-center h-10">
-                  <h2 className="text-lg font-medium truncate mr-5">
-                    Transactions
-                  </h2>
-                </div>
-                <div className="mt-5">
-                  {$_.take($f(), 5).map((faker, fakerKey) => (
-                    <div key={fakerKey} className="intro-x">
-                      <div className="box px-5 py-3 mb-3 flex items-center zoom-in">
-                        <div className="w-10 h-10 flex-none image-fit rounded-full overflow-hidden">
-                          <img
-                            alt="Midone Tailwind HTML Admin Template"
-                            src={faker.photos[0]}
-                          />
-                        </div>
-                        <div className="ml-4 mr-auto">
-                          <div className="font-medium">
-                            {faker.users[0].name}
-                          </div>
-                          <div className="text-slate-500 text-xs mt-0.5">
-                            {faker.dates[0]}
-                          </div>
-                        </div>
-                        <div
-                          className={classnames({
-                            'text-success': faker.trueFalse[0],
-                            'text-danger': !faker.trueFalse[0],
-                          })}
-                        >
-                          {faker.trueFalse[0] ? '+' : '-'}${faker.totals[0]}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                  <a
-                    href=""
-                    className="intro-x w-full block text-center rounded-md py-3 border border-dotted border-slate-400 dark:border-darkmode-300 text-slate-500"
-                  >
-                    View More
-                  </a>
-                </div>
-              </div>
-              {/* END: Transactions */}
-              {/* BEGIN: Schedules */}
-              <div className="col-span-12 md:col-span-6 xl:col-span-4 2xl:col-span-12 xl:col-start-1 xl:row-start-2 2xl:col-start-auto 2xl:row-start-auto mt-3">
-                <div className="intro-x flex items-center h-10">
-                  <h2 className="text-lg font-medium truncate mr-5">
-                    Schedules
-                  </h2>
-                  <a
-                    href=""
-                    className="ml-auto text-primary truncate flex items-center"
-                  >
-                    <Lucide icon="Plus" className="w-4 h-4 mr-1" /> Add New
-                    Schedules
-                  </a>
-                </div>
-                <div className="mt-5">
-                  <div className="intro-x box">
-                    <div className="p-5">
-                      <div className="flex">
-                        <Lucide
-                          icon="ChevronLeft"
-                          className="w-5 h-5 text-slate-500"
-                        />
-                        <div className="font-medium text-base mx-auto">
-                          April
-                        </div>
-                        <Lucide
-                          icon="ChevronRight"
-                          className="w-5 h-5 text-slate-500"
-                        />
-                      </div>
-                      <div className="grid grid-cols-7 gap-4 mt-5 text-center">
-                        <div className="font-medium">Su</div>
-                        <div className="font-medium">Mo</div>
-                        <div className="font-medium">Tu</div>
-                        <div className="font-medium">We</div>
-                        <div className="font-medium">Th</div>
-                        <div className="font-medium">Fr</div>
-                        <div className="font-medium">Sa</div>
-                        <div className="py-0.5 rounded relative text-slate-500">
-                          29
-                        </div>
-                        <div className="py-0.5 rounded relative text-slate-500">
-                          30
-                        </div>
-                        <div className="py-0.5 rounded relative text-slate-500">
-                          31
-                        </div>
-                        <div className="py-0.5 rounded relative">1</div>
-                        <div className="py-0.5 rounded relative">2</div>
-                        <div className="py-0.5 rounded relative">3</div>
-                        <div className="py-0.5 rounded relative">4</div>
-                        <div className="py-0.5 rounded relative">5</div>
-                        <div className="py-0.5 bg-success/20 dark:bg-success/30 rounded relative">
-                          6
-                        </div>
-                        <div className="py-0.5 rounded relative">7</div>
-                        <div className="py-0.5 bg-primary text-white rounded relative">
-                          8
-                        </div>
-                        <div className="py-0.5 rounded relative">9</div>
-                        <div className="py-0.5 rounded relative">10</div>
-                        <div className="py-0.5 rounded relative">11</div>
-                        <div className="py-0.5 rounded relative">12</div>
-                        <div className="py-0.5 rounded relative">13</div>
-                        <div className="py-0.5 rounded relative">14</div>
-                        <div className="py-0.5 rounded relative">15</div>
-                        <div className="py-0.5 rounded relative">16</div>
-                        <div className="py-0.5 rounded relative">17</div>
-                        <div className="py-0.5 rounded relative">18</div>
-                        <div className="py-0.5 rounded relative">19</div>
-                        <div className="py-0.5 rounded relative">20</div>
-                        <div className="py-0.5 rounded relative">21</div>
-                        <div className="py-0.5 rounded relative">22</div>
-                        <div className="py-0.5 bg-pending/20 dark:bg-pending/30 rounded relative">
-                          23
-                        </div>
-                        <div className="py-0.5 rounded relative">24</div>
-                        <div className="py-0.5 rounded relative">25</div>
-                        <div className="py-0.5 rounded relative">26</div>
-                        <div className="py-0.5 bg-primary/10 dark:bg-primary/50 rounded relative">
-                          27
-                        </div>
-                        <div className="py-0.5 rounded relative">28</div>
-                        <div className="py-0.5 rounded relative">29</div>
-                        <div className="py-0.5 rounded relative">30</div>
-                        <div className="py-0.5 rounded relative text-slate-500">
-                          1
-                        </div>
-                        <div className="py-0.5 rounded relative text-slate-500">
-                          2
-                        </div>
-                        <div className="py-0.5 rounded relative text-slate-500">
-                          3
-                        </div>
-                        <div className="py-0.5 rounded relative text-slate-500">
-                          4
-                        </div>
-                        <div className="py-0.5 rounded relative text-slate-500">
-                          5
-                        </div>
-                        <div className="py-0.5 rounded relative text-slate-500">
-                          6
-                        </div>
-                        <div className="py-0.5 rounded relative text-slate-500">
-                          7
-                        </div>
-                        <div className="py-0.5 rounded relative text-slate-500">
-                          8
-                        </div>
-                        <div className="py-0.5 rounded relative text-slate-500">
-                          9
-                        </div>
-                      </div>
-                    </div>
-                    <div className="border-t border-slate-200/60 p-5">
-                      <div className="flex items-center">
-                        <div className="w-2 h-2 bg-pending rounded-full mr-3"></div>
-                        <span className="truncate">UI/UX Workshop</span>
-                        <span className="font-medium xl:ml-auto">23th</span>
-                      </div>
-                      <div className="flex items-center mt-4">
-                        <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
-                        <span className="truncate">
-                          VueJs Frontend Development
-                        </span>
-                        <span className="font-medium xl:ml-auto">10th</span>
-                      </div>
-                      <div className="flex items-center mt-4">
-                        <div className="w-2 h-2 bg-warning rounded-full mr-3"></div>
-                        <span className="truncate">Laravel Rest API</span>
-                        <span className="font-medium xl:ml-auto">31th</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {/* END: Schedules */}
             </div>
           </div>
         </div>
