@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 const PricePanel = (props) => {
   // console.log("랜더링횟수");
   const dispatch = useDispatch()
-  const { isSelect, setIsSelect, coinsPrice } = props
+  const { isSelect, setIsSelect, coinsPrice, coin } = props
   const {
     code,
     trade_price,
@@ -14,7 +14,7 @@ const PricePanel = (props) => {
     acc_trade_price_24h,
     name,
     exchange,
-  } = props.coin
+  } = coin
 
   const upDown = change === 'RISE' ? '+' : '-'
   const changeRate = `${upDown} ${(change_rate * 100).toFixed(2)} %`
