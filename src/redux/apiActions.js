@@ -8,8 +8,11 @@ export const initChart = async (dispatch) => {
   const { data } = await axios.get(baseUrl + "recycle/getCharts");
   dispatch({ type: "INIT_CANDLE", payload: data });
 };
-
 export const initCoinsPrice = async (dispatch) => {
   const { data } = await axios.get(baseUrl + "recycle/getCoinsPrice");
   dispatch({ type: "INIT_COIN", payload: data });
+};
+export const initAllUsers = async (dispatch) => {
+  const { data } = await axios.get(baseUrl + "user/getUsers");
+  dispatch({ type: "SET_USERS", payload: data });
 };

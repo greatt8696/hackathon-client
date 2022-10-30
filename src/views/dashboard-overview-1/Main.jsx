@@ -26,13 +26,16 @@ import phoneIllustrationUrl from '@/assets/images/phone-illustration.svg'
 import CandleChart from '../../components/candleChart/CandleChart'
 import { useDispatch, useSelector } from 'react-redux'
 import PricePanel from '../../components/PricePanel'
+import { useEffect } from 'react'
 
 function Main() {
   const dispatch = useDispatch()
 
   const coinsPrice = useSelector((state) => state.coinReducer.coinsPrice)
   const candles = useSelector((state) => state.coinReducer.candles)
+  const users = useSelector((state) => state.userReducer.users)
 
+  useEffect(()=>{console.log(users);},[users])
 
 
   return (
