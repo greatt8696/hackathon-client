@@ -247,7 +247,7 @@ function Main() {
                   </h2>
                 </div>
                 <div className="">
-                  <CandleChart></CandleChart>
+                  <CandleChart exchange = {"서울거래소"} code={"KRW-BTC"}></CandleChart>
                 </div>
               </div>
               {/* END: Transactions */}

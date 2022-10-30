@@ -4,7 +4,8 @@ import { useState } from 'react'
 import Chart from 'react-apexcharts'
 import { useSelector } from 'react-redux'
 
-const CandleChart = () => {
+const CandleChart = (props) => {
+  const {exchange, code} = props
   const candles = useSelector((state) => state.coinReducer.candles)
   const initData = {
     series: [
@@ -108,7 +109,7 @@ const CandleChart = () => {
   const [volume, setVolume] = useState([{ data: [{}] }])
 
   useEffect(() => {
-    const candle = candles['KRW-BTC']
+    const candle = candles[code]
     if (candle !== undefined) {
       const ohlc = candle.ohlc.map(({ x, y }) => {
         return { y, x: new Date(x) }
