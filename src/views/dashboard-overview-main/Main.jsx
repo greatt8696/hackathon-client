@@ -33,7 +33,7 @@ function Main() {
   }
 
   useEffect(() => {
-    //console.log(coinsPrice)
+    //console.log("@@@",coinsPrice)
   }, [coinsPrice])
 
   return (

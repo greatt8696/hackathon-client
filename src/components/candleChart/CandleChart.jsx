@@ -92,7 +92,7 @@ const CandleChart = (props) => {
         },
       },
       stroke: {
-        width: 0,
+        width: 1,
       },
       xaxis: {
         type: 'datetime',

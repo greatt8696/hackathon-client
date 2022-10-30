@@ -48,6 +48,15 @@ const coinReducer = (state = initState, action) => {
   const { type, payload } = action;
 
   switch (type) {
+    case "INIT_COIN":
+      console.log("INIT_COIN",payload);
+      return {
+        ...state,
+        coinsPrice: state.coinsPrice.map((coin) => {
+          return { ...coin, ...payload[coin.code] } ;
+        }),
+      };
+
     case "UPDATE_COIN":
       return {
         ...state,
@@ -56,11 +65,18 @@ const coinReducer = (state = initState, action) => {
         }),
       };
 
+    case "INIT_CANDLE":
+      return {
+        ...state,
+        candles: payload,
+      };
+
     case "UPDATE_CANDLE":
       return {
         ...state,
         candles: { ...payload },
       };
+
     case "ADD_TRANSACTION":
       return {
         ...state,
