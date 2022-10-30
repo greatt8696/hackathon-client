@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 const PricePanel = (props) => {
   // console.log("랜더링횟수");
   const dispatch = useDispatch()
-  const coinsPrice = useSelector((state) => state.coinReducer.coinsPrice)
-  const { isSelect, setIsSelect } = props
+  const { isSelect, setIsSelect, coinsPrice } = props
   const {
     code,
     trade_price,

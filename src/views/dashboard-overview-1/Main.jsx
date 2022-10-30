@@ -29,14 +29,11 @@ import PricePanel from '../../components/PricePanel'
 
 function Main() {
   const dispatch = useDispatch()
+
   const coinsPrice = useSelector((state) => state.coinReducer.coinsPrice)
-  const importantNotesRef = useRef()
-  const prevImportantNotes = () => {
-    importantNotesRef.current.tns.goTo('prev')
-  }
-  const nextImportantNotes = () => {
-    importantNotesRef.current.tns.goTo('next')
-  }
+  const candles = useSelector((state) => state.coinReducer.candles)
+
+
 
   return (
     <>
@@ -66,6 +63,7 @@ function Main() {
             <div className="intro-y col-span-6 box p-5 mt-12 sm:mt-5">
               <div>서울거래소</div>
               <CandleChart
+                candles={candles}
                 className="col-span-6"
                 exchange={'서울거래소'}
                 code={'KRW-BTC'}
@@ -74,6 +72,7 @@ function Main() {
             <div className="intro-y col-span-6 box p-5 mt-12 sm:mt-5">
               <div>인천거래소</div>
               <CandleChart
+                candles={candles}
                 className="col-span-6"
                 exchange={'인천거래소'}
                 code={'KRW-ETH'}
@@ -82,6 +81,7 @@ function Main() {
             <div className="intro-y col-span-6 box p-5 mt-12 sm:mt-5">
               <div>세종거래소</div>
               <CandleChart
+                candles={candles}
                 className="col-span-6"
                 exchange={'세종거래소'}
                 code={'KRW-XRP'}
@@ -90,9 +90,55 @@ function Main() {
             <div className="intro-y col-span-6 box p-5 mt-12 sm:mt-5">
               <div>대전거래소</div>
               <CandleChart
+                candles={candles}
                 className="col-span-6"
                 exchange={'대전거래소'}
                 code={'KRW-ADA'}
+              ></CandleChart>
+            </div>
+            <div className="intro-y col-span-6 box p-5 mt-12 sm:mt-5">
+              <div>강원거래소</div>
+              <CandleChart
+                candles={candles}
+                className="col-span-6"
+                exchange={'강원거래소'}
+                code={'KRW-DOGE'}
+              ></CandleChart>
+            </div>
+            <div className="intro-y col-span-6 box p-5 mt-12 sm:mt-5">
+              <div>광주거래소</div>
+              <CandleChart
+                candles={candles}
+                className="col-span-6"
+                exchange={'광주거래소'}
+                code={'KRW-ATOM'}
+              ></CandleChart>
+            </div>
+            <div className="intro-y col-span-6 box p-5 mt-12 sm:mt-5">
+              <div>부산거래소</div>
+              <CandleChart
+                candles={candles}
+                className="col-span-6"
+                exchange={'부산거래소'}
+                code={'KRW-SOL'}
+              ></CandleChart>
+            </div>
+            <div className="intro-y col-span-6 box p-5 mt-12 sm:mt-5">
+              <div>울산거래소</div>
+              <CandleChart
+                candles={candles}
+                className="col-span-6"
+                exchange={'울산거래소'}
+                code={'KRW-ETC'}
+              ></CandleChart>
+            </div>
+            <div className="intro-y col-span-6 box p-5 mt-12 sm:mt-5">
+              <div>대구거래소</div>
+              <CandleChart
+                candles={candles}
+                className="col-span-6"
+                exchange={'대구거래소'}
+                code={'KRW-MATIC'}
               ></CandleChart>
             </div>
             {/* END: Weekly Top Products */}
@@ -105,6 +151,8 @@ function Main() {
               <div className="mt-5 col-span-12">
                 {coinsPrice.map((coin) => (
                   <PricePanel
+                    coinsPrice={coinsPrice}
+                    candles={candles}
                     key={coin.code}
                     coin={coin}
                     setIsSelect={false}

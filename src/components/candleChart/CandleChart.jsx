@@ -5,8 +5,7 @@ import Chart from 'react-apexcharts'
 import { useSelector } from 'react-redux'
 
 const CandleChart = (props) => {
-  const {exchange, code} = props
-  const candles = useSelector((state) => state.coinReducer.candles)
+  const {exchange, code, candles} = props
   const initData = {
     series: [
       {

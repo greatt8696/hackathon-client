@@ -23,6 +23,7 @@ import { useEffect } from 'react'
 function Main() {
   const dispatch = useDispatch()
   const coinsPrice = useSelector((state) => state.coinReducer.coinsPrice)
+  const candles = useSelector((state) => state.coinReducer.candles)
 
   const importantNotesRef = useRef()
   const prevImportantNotes = () => {
@@ -242,12 +243,14 @@ function Main() {
                   <h2 className="text-lg font-medium truncate mr-5">
                     Green Coin
                   </h2>
-                  <h2 className="text-lg font-medium truncate mr-5">
-                    {1}
-                  </h2>
+                  <h2 className="text-lg font-medium truncate mr-5">{1}</h2>
                 </div>
                 <div className="">
-                  <CandleChart exchange = {"서울거래소"} code={"KRW-BTC"}></CandleChart>
+                  <CandleChart
+                    candles={candles}
+                    exchange={'서울거래소'}
+                    code={'KRW-BTC'}
+                  ></CandleChart>
                 </div>
               </div>
               {/* END: Transactions */}
@@ -259,6 +262,7 @@ function Main() {
                 <div className="mt-5">
                   {coinsPrice.map((coin) => (
                     <PricePanel
+                      coinsPrice={coinsPrice}
                       key={coin.code}
                       coin={coin}
                       setIsSelect={false}
