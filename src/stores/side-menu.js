@@ -45,25 +45,25 @@ const sideMenu = atom({
         ],
       },
       {
-        icon: "Box",
-        title: "그린 식목 사업",
-        pathname: "/simple-menu/dashboard-overview-1",
-      },
-      {
-        icon: "ShoppingBag",
-        title: "재활용응용사업펀딩",
-        pathname: "/simple-menu/dashboard-overview-1",
-      },
-      {
-        icon: "HardDrive",
-        pathname: "/file-manager",
-        title: "ESG 포인트",
-      },
-      "devider",
-      {
-        icon: "Edit",
-        title: "저장소",
-        pathname: "/crud-data-list",
+        icon: "Users",
+        title: "제휴 기업 관리",
+        subMenu: [
+          {
+            icon: "",
+            pathname: "/users-layout-1",
+            title: "AI 객체인식 기업",
+          },
+          {
+            icon: "",
+            pathname: "/users-layout-2",
+            title: "도심공기측정 기업",
+          },
+          {
+            icon: "",
+            pathname: "/users-layout-3",
+            title: "드론 관제 기업",
+          },
+        ],
       },
       {
         icon: "Users",
@@ -86,6 +86,28 @@ const sideMenu = atom({
           },
         ],
       },
+      {
+        icon: "Box",
+        title: "그린 식목 사업",
+        pathname: "/simple-menu/dashboard-overview-1",
+      },
+      {
+        icon: "ShoppingBag",
+        title: "재활용응용사업펀딩",
+        pathname: "/simple-menu/dashboard-overview-1",
+      },
+      {
+        icon: "HardDrive",
+        pathname: "/file-manager",
+        title: "ESG 포인트",
+      },
+      "devider",
+      {
+        icon: "Edit",
+        title: "저장소",
+        pathname: "/crud-data-list",
+      },
+
       {
         icon: "Trello",
         title: "기획자 프로필",
