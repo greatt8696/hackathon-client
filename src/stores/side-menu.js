@@ -59,21 +59,6 @@ const sideMenu = atom({
         pathname: "/file-manager",
         title: "ESG 포인트",
       },
-      {
-        icon: "MessageSquare",
-        pathname: "/chat",
-        title: "채팅",
-      },
-      {
-        icon: "FileText",
-        pathname: "/post",
-        title: "게시판",
-      },
-      {
-        icon: "Calendar",
-        pathname: "/calendar",
-        title: "달력",
-      },
       "devider",
       {
         icon: "Edit",
@@ -82,22 +67,22 @@ const sideMenu = atom({
       },
       {
         icon: "Users",
-        title: "유저관리",
+        title: "실시간 트랜잭션",
         subMenu: [
           {
             icon: "",
             pathname: "/users-layout-1",
-            title: "Layout 1",
+            title: "재활용 거래 트랜잭션",
           },
           {
             icon: "",
             pathname: "/users-layout-2",
-            title: "Layout 2",
+            title: "폐기물 입출 트랜잭션",
           },
           {
             icon: "",
             pathname: "/users-layout-3",
-            title: "Layout 3",
+            title: "유저 트랜잭션",
           },
         ],
       },

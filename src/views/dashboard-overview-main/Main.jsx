@@ -59,7 +59,7 @@ function Main() {
                       className="w-10 h-10 text-pending"
                     />
                     <div className="justify-start flex items-center text-green-700 dark:text-slate-300 mt-8 text-3xl ">
-                      ♻ Green Coin
+                      ♻ 그린코인
                       {/* <Lucide
                         icon="AlertCircle"
                         className="tooltip w-4 h-4 ml-1.5"
@@ -68,17 +68,18 @@ function Main() {
                     </div>
                     <div className="flex items-center justify-start mt-4">
                       <div className="relative text-xl font-medium pl-3 ml-0.5">
-                        <span className="absolute text-xl font-medium top-0 left-0 -ml-0.5">
-                          $
-                        </span>
-                        1,413,102.02
+                        1,413,100,000 원
                       </div>
-                      <a className="text-slate-500 ml-4" href="">
-                        <Lucide icon="RefreshCcw" className="w-4 h-4" />
-                      </a>
+                      <div
+                        className="text-red-600 flex text-xs font-medium tooltip cursor-pointer ml-2"
+                        title="52% Higher than last month"
+                      >
+                        180%
+                        <Lucide icon="ChevronUp" className="w-4 h-4 ml-0.5" />
+                      </div>
                     </div>
-                    <div className="mt-4 text-slate-500 text-xs">
-                      Last updated 1 hour ago
+                    <div className=" mt-4 text-slate-500 text-xs mx-auto">
+                      18초전
                     </div>
                   </div>
                   <div className="col-span-12 lg:col-span-8 p-8 border-t lg:border-t-0 lg:border-l border-slate-200 dark:border-darkmode-300 border-dashed">
@@ -88,28 +89,94 @@ function Main() {
                         role="tablist"
                       >
                         <Tab className="w-full py-1.5 px-2" tag="button">
-                          Weekly
+                          보유현황
                         </Tab>
                         <Tab className="w-full py-1.5 px-2" tag="button">
-                          Monthly
+                          통계
                         </Tab>
                       </TabList>
                       <TabPanels className="px-5 pb-5">
                         <TabPanel className="grid grid-cols-12 gap-y-8 gap-x-10">
                           <div className="col-span-12 sm:col-span-6 md:col-span-4">
                             <div className="text-slate-500 font-black ">
-                              지출
+                              ESG 포인트
                             </div>
                             <div className="mt-1.5 flex items-center">
-                              <div className="text-base">$54.000</div>
+                              <div className="text-base">606</div>
                             </div>
                           </div>
                           <div className="col-span-12 sm:col-span-6 md:col-span-4">
                             <div className="text-slate-500 font-black">
-                              유료 성공 지불
+                              압축PET
                             </div>
                             <div className="mt-1.5 flex items-center">
-                              <div className="text-base">2.500</div>
+                              <div className="text-base">18 kg</div>
+                              <div
+                                className="flex text-xs font-medium tooltip cursor-pointer ml-2 text-red-600"
+                                title="52% Higher than last month"
+                              >
+                                52%
+                                <Lucide
+                                  icon="ChevronUp"
+                                  className="w-4 h-4 ml-0.5 text-red-600"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div className="col-span-12 sm:col-span-6 md:col-span-4">
+                            <div className="text-slate-500 font-black">
+                              청색 유리컬릿
+                            </div>
+                            <div className="mt-1.5 flex items-center">
+                              <div className="text-base">8 kg</div>
+                              <div
+                                className="text-red flex text-xs font-medium tooltip cursor-pointer ml-2 text-blue-600"
+                                title="52% Higher than last month"
+                              >
+                                18%
+                                <Lucide
+                                  icon="ChevronDown"
+                                  className="w-4 h-4 ml-0.5 text-blue-600"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div className="col-span-12 sm:col-span-6 md:col-span-4">
+                            <div className="text-slate-500 font-black">
+                              폐타이어 파우더
+                            </div>
+                            <div className="mt-1.5 flex items-center">
+                              <div className="text-base">36 kg</div>
+                              <div
+                                className="text-red flex text-xs font-medium tooltip cursor-pointer ml-2 text-blue-600"
+                                title="52% Higher than last month"
+                              >
+                                18%
+                                <Lucide
+                                  icon="ChevronDown"
+                                  className="w-4 h-4 ml-0.5 text-blue-600"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                        </TabPanel>
+                      </TabPanels>
+                      <TabPanels className="px-5 pb-5">
+                        <TabPanel className="grid grid-cols-12 gap-y-8 gap-x-10">
+                          <div className="col-span-12 sm:col-span-6 md:col-span-4">
+                            <div className="text-slate-500 font-black ">
+                              ESG 포인트
+                            </div>
+                            <div className="mt-1.5 flex items-center">
+                              <div className="text-base">606</div>
+                            </div>
+                          </div>
+                          <div className="col-span-12 sm:col-span-6 md:col-span-4">
+                            <div className="text-slate-500 font-black">
+                              압축PET
+                            </div>
+                            <div className="mt-1.5 flex items-center">
+                              <div className="text-base">18 kg</div>
                               <div
                                 className="text-success flex text-xs font-medium tooltip cursor-pointer ml-2"
                                 title="52% Higher than last month"
@@ -124,42 +191,36 @@ function Main() {
                           </div>
                           <div className="col-span-12 sm:col-span-6 md:col-span-4">
                             <div className="text-slate-500 font-black">
-                              미지급 대출
+                              청색 유리컬릿
                             </div>
                             <div className="mt-1.5 flex items-center">
-                              <div className="text-base">$72.000</div>
-                            </div>
-                          </div>
-                          <div className="col-span-12 sm:col-span-6 md:col-span-4">
-                            <div className="text-slate-500 font-black">
-                              게시된 펀딩
-                            </div>
-                            <div className="mt-1.5 flex items-center">
-                              <div className="text-base">4.501</div>
-                            </div>
-                          </div>
-                          <div className="col-span-12 sm:col-span-6 md:col-span-4">
-                            <div className="text-slate-500 font-black">
-                              소셜 미디어
-                            </div>
-                            <div className="mt-1.5 flex items-center">
-                              <div className="text-base">2</div>
-                            </div>
-                          </div>
-                          <div className="col-span-12 sm:col-span-6 md:col-span-4">
-                            <div className="text-slate-500 font-black">
-                              순이익률
-                            </div>
-                            <div className="mt-1.5 flex items-center">
-                              <div className="text-base">$72.000</div>
+                              <div className="text-base">8 kg</div>
                               <div
-                                className="text-success flex text-xs font-medium tooltip cursor-pointer ml-2"
-                                title="49% Higher than last month"
+                                className="text-red flex text-xs font-medium tooltip cursor-pointer ml-2 text-blue-600"
+                                title="52% Higher than last month"
                               >
-                                49%
+                                18%
                                 <Lucide
-                                  icon="ChevronUp"
-                                  className="w-4 h-4 ml-0.5"
+                                  icon="ChevronDown"
+                                  className="w-4 h-4 ml-0.5 text-blue-600"
+                                />
+                              </div>
+                            </div>
+                          </div>
+                          <div className="col-span-12 sm:col-span-6 md:col-span-4">
+                            <div className="text-slate-500 font-black">
+                              폐타이어 파우더
+                            </div>
+                            <div className="mt-1.5 flex items-center">
+                              <div className="text-base">36 kg</div>
+                              <div
+                                className="text-red flex text-xs font-medium tooltip cursor-pointer ml-2 text-blue-600"
+                                title="52% Higher than last month"
+                              >
+                                18%
+                                <Lucide
+                                  icon="ChevronDown"
+                                  className="w-4 h-4 ml-0.5 text-blue-600"
                                 />
                               </div>
                             </div>
@@ -182,7 +243,7 @@ function Main() {
               <div className="report-box-2 before:hidden xl:before:block intro-y mt-5">
                 <div className="box p-5">
                   <div className="text-slate-500 font-black">
-                    하루 총 배출량 비율
+                    보유 폐기물 현황
                   </div>
                   <div className="mt-3">
                     <ReportDonutChart height={95} />
@@ -191,23 +252,23 @@ function Main() {
                     <div className="flex items-center">
                       <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
                       <span className="truncate text-slate-500 font-black">
-                        유리
+                        유리컬릿
                       </span>
-                      <span className="font-medium ml-auto">62%</span>
+                      <span className="font-medium ml-auto">12%</span>
                     </div>
                     <div className="flex items-center mt-4">
                       <div className="w-2 h-2 bg-pending rounded-full mr-3"></div>
                       <span className="truncate text-slate-500 font-black">
-                        철
+                        압축 플라스틱
                       </span>
-                      <span className="font-medium ml-auto">33%</span>
+                      <span className="font-medium ml-auto">29%</span>
                     </div>
                     <div className="flex items-center mt-4">
                       <div className="w-2 h-2 bg-warning rounded-full mr-3"></div>
                       <span className="truncate text-slate-500 font-black">
-                        플라스틱
+                        폐타이어 파우더
                       </span>
-                      <span className="font-medium ml-auto">10%</span>
+                      <span className="font-medium ml-auto">59%</span>
                     </div>
                   </div>
                 </div>
@@ -228,7 +289,7 @@ function Main() {
                   <input
                     type="text"
                     className="form-control sm:w-56 box pl-10"
-                    placeholder="Filter by city"
+                    placeholder="거래소 검색"
                   />
                 </div>
               </div>
@@ -245,7 +306,7 @@ function Main() {
               <div className="col-span-12 md:col-span-6 xl:col-span-4 2xl:col-span-12 mt-3">
                 <div className="intro-x flex items-center h-10 mt-6">
                   <h2 className="text-lg font-medium truncate mr-5">
-                    Green Coin
+                    그린코인
                   </h2>
                   <div className="mt-1.5 flex items-center">
                     <ChangeLabel coin={coin} text={"text-2xl"}></ChangeLabel>

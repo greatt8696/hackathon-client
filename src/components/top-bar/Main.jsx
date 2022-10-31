@@ -214,10 +214,10 @@ function Main(props) {
           {/* BEGIN: Account Menu */}
           {/* @@@@@@@@@@@@@@@@@@@@@@ */}
 
-          <button className="btn intro-x  z-50 rounded-lg border-white border-2 bg-transparent py-4 px-3 mr-4 min-w-fit h-full text-white font-bold cursor-pointer">
+          <button className="btn transition-all hover:bg-white hover:text-green-800 intro-x z-50 rounded-lg border-white border-2 bg-transparent py-4 px-3 mr-4 min-w-fit h-full text-white font-bold cursor-pointer">
             로그인
           </button>
-          <button className="btn intro-x  z-50 rounded-lg border-white border-2 bg-transparent py-4 px-3 mr-4 min-w-fit h-full text-white font-bold cursor-pointer">
+          <button className="btn transition-all hover:bg-white hover:text-green-800 intro-x z-50 rounded-lg border-white border-2 bg-transparent py-4 px-3 mr-4 min-w-fit h-full text-white font-bold cursor-pointer">
             회원가입
           </button>
           <Dropdown className="intro-x w-8 h-8">
