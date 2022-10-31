@@ -10,6 +10,8 @@ const ChangeLabel = (props) => {
   const priceRef = useRef();
   const changeRef = useRef();
 
+  console.log(coin);
+
   useEffect(() => {
     if (coin !== undefined) setTempCoin(coin);
   }, [coin]);
@@ -19,12 +21,12 @@ const ChangeLabel = (props) => {
       if (coin.change === "RISE") {
         setUp(true);
         setIcon("ChevronUp");
-        priceRef.current.classList.add("animate-blink-ba-red");
+        priceRef.current.classList.add("animate-blink-text-red");
         priceRef.current.classList.add("text-white");
       } else {
         setUp(false);
         setIcon("ChevronDown");
-        priceRef.current.classList.add("animate-blink-ba-blue");
+        priceRef.current.classList.add("animate-blink-text-blue");
         priceRef.current.classList.add("text-white");
       }
       setchangeLabel(`${(coin.change_rate * 100).toFixed(2)} %`);
@@ -32,11 +34,11 @@ const ChangeLabel = (props) => {
   }, [coin]);
 
   const animationEndHandler = () => {
-    priceRef.current.classList.remove("animate-blink-ba-blue");
-    priceRef.current.classList.remove("animate-blink-ba-red");
+    priceRef.current.classList.remove("animate-blink-text-blue");
+    priceRef.current.classList.remove("animate-blink-text-red");
     priceRef.current.classList.remove("text-white");
-    changeRef.current.classList.remove("animate-blink-ba-blue");
-    changeRef.current.classList.remove("animate-blink-ba-blue");
+    changeRef.current.classList.remove("animate-blink-text-blue");
+    changeRef.current.classList.remove("animate-blink-text-blue");
     changeRef.current.classList.remove("text-white");
   };
 
@@ -44,11 +46,11 @@ const ChangeLabel = (props) => {
     <div className="flex" ref={priceRef} onAnimationEnd={animationEndHandler}>
       <div
         ref={priceRef}
-        className={`
+        className={`animate-blin
         ${isup ? "text-red-500" : "text-blue-500"} ${text} font-medium ml-2`}
         onAnimationEnd={animationEndHandler}
       >
-        {coin.trade_price}
+        {coin && coin.trade_price}
       </div>
       <div
         ref={changeRef}

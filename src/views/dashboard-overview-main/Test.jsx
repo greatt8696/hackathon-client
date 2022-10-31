@@ -176,8 +176,8 @@ const Test = () => {
         {test11.map(({ lat, lng, tree_name }, key) => (
           // value는 여러개의 방들중 하나의 방의 값들
           // index는 여러개의 방들
-          <CustomOverlayMap key={key} position={{ lat, lng }}>
-            <Pointer coinsPrice={coinsPrice[key]} tree_name={tree_name} />
+          <CustomOverlayMap key={key} position={{ lat, lng }} >
+            <Pointer coinsPrice={coinsPrice[key]} tree_name={tree_name}/>
           </CustomOverlayMap>
           // 준우야 여기가 END
         ))}

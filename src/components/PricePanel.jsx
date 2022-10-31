@@ -47,24 +47,24 @@ const PricePanel = (props) => {
   useEffect(() => {
     //panelRef.current.classList.add('animate-wiggle-once')
     upDown === "+"
-      ? panelRef.current.classList.add("animate-blink-border-red")
-      : panelRef.current.classList.add("animate-blink-border-blue");
-  }, [trade_price]);
+      ? panelRef.current.classList.add("animate-blink-red")
+      : panelRef.current.classList.add("animate-blink-blue");
+  }, [data]);
 
   const anmatieEndHandler = () => {
     //panelRef.current.classList.remove('animate-wiggle-once')
-    panelRef.current.classList.remove("animate-blink-border-red");
-    panelRef.current.classList.remove("animate-blink-border-blue");
+    panelRef.current.classList.remove("animate-blink-red");
+    panelRef.current.classList.remove("animate-blink-blue");
   };
 
   return (
     <div
-      className="p-2 z-0 bg-white rounded-lg font-bold text-[5px] w-full cursor-pointer hover:scale-110 mb-2 border-2"
+      className="p-2 z-0 bg-white rounded-lg font-bold text-[5px]  w-32 cursor-pointer hover:scale-110 mb-2 border-2"
       onAnimationEnd={anmatieEndHandler}
       onClick={clickHandler}
       ref={panelRef}
     >
-      <div className="pointer-events-none z-0">{exchange}</div>
+      <div className="pointer-events-none z-0">{name}</div>
       {/* <img src={imgUrl}></img> */}
 
       <ChangeLabel coin={coin} text={"text-lg"}></ChangeLabel>

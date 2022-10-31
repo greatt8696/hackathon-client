@@ -52,7 +52,9 @@
       "itm_ery": 10.0,
       "lat": "37.56622951250392",
       "tre_som": "6",
-      "cmfe_lu_st": "50"
+      "cmfe_lu_st": "50",
+      "point":"seoul"
+      
     },
     {
       "rnk_bht_hg": 15.0,
@@ -79,7 +81,8 @@
       "itm_ery": 10.0,
       "lat": "37.45624680509687",
       "tre_som": "6",
-      "cmfe_lu_st": "60"
+      "cmfe_lu_st": "60",
+      "code" : "KRW-ETH"
     },
     {
       "rnk_bht_hg": 15.0,

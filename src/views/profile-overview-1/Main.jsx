@@ -10,22 +10,62 @@ import {
   Tab,
   TabPanels,
   TabPanel,
-} from "@/base-components";
-import StackedBarChart1 from "@/components/stacked-bar-chart-1/Main";
-import SimpleLineChart from "@/components/simple-line-chart/Main";
-import SimpleLineChart1 from "@/components/simple-line-chart-1/Main";
-import SimpleLineChart2 from "@/components/simple-line-chart-2/Main";
-import { faker as $f } from "@/utils";
-import { useLocation } from "react-router-dom";
+} from '@/base-components'
+import SimpleLineChart1 from '@/components/simple-line-chart-1/Main'
+import SimpleLineChart2 from '@/components/simple-line-chart-2/Main'
+import { faker as $f } from '@/utils'
+import { useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
+import {
+  getRecycleTransaction,
+  getTransferTransaction,
+} from '../../redux/apiActions'
+import { useDispatch, useSelector } from 'react-redux'
+import { useState } from 'react'
 
 function Main(props) {
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  // 쿼리 취득
-  const name = searchParams.get("name"); // id 취득
-  console.log("name: ", name); // id: 10
+  const location = useLocation()
+  const dispatch = useDispatch()
+  const recycleTransactions = useSelector(
+    (state) => state.userReducer.recycleTransactions,
+  )
+  const transferTransactions = useSelector(
+    (state) => state.userReducer.transferTransactions,
+  )
 
-  https: return (
+  const [transfers, setTransfers] = useState([])
+  const [recycles, setRecycle] = useState([])
+
+  useEffect(() => {
+    if (recycleTransactions.length !== 0)
+      setRecycle([
+        ...recycleTransactions.resultFrom,
+        ...recycleTransactions.resultTo,
+      ])
+  }, [recycleTransactions])
+
+  useEffect(() => {
+    if (transferTransactions.length !== 0)
+      setTransfers([
+        ...transferTransactions.resultFrom,
+        ...transferTransactions.resultTo,
+      ])
+  }, [transferTransactions])
+
+  const searchParams = new URLSearchParams(location.search)
+  // 쿼리 취득
+  const uid = searchParams.get('uid') // id 취득
+
+  useEffect(() => {
+    async function fetchDatas() {
+      const result = await getRecycleTransaction(dispatch, uid)
+      const result1 = await getTransferTransaction(dispatch, uid)
+
+    }
+    fetchDatas()
+  }, [])
+
+  return (
     <>
       <div className="intro-y flex items-center mt-8">
         <h2 className="text-lg font-medium mr-auto">Profile Layout</h2>
@@ -77,7 +117,7 @@ function Main(props) {
               </div>
               <div className="flex items-center justify-center lg:justify-start mt-2">
                 <div className="mr-2 w-20 flex">
-                  USP:{" "}
+                  USP:{' '}
                   <span className="ml-3 font-medium text-success">+23%</span>
                 </div>
                 <div className="w-3/4">
@@ -114,473 +154,17 @@ function Main(props) {
           <TabPanel>
             <div className="grid grid-cols-12 gap-6">
               {/* BEGIN: Top Categories */}
-              <div className="intro-y box col-span-12 lg:col-span-6">
-                <div className="flex items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
-                  <h2 className="font-medium text-base mr-auto">
-                    Top Categories
-                  </h2>
-                  <Dropdown className="ml-auto">
-                    <DropdownToggle tag="a" className="w-5 h-5 block" href="#">
-                      <Lucide
-                        icon="MoreHorizontal"
-                        className="w-5 h-5 text-slate-500"
-                      />
-                    </DropdownToggle>
-                    <DropdownMenu className="w-40">
-                      <DropdownContent>
-                        <DropdownItem>
-                          <Lucide icon="Plus" className="w-4 h-4 mr-2" /> Add
-                          Category
-                        </DropdownItem>
-                        <DropdownItem>
-                          <Lucide icon="Settings" className="w-4 h-4 mr-2" />
-                          Settings
-                        </DropdownItem>
-                      </DropdownContent>
-                    </DropdownMenu>
-                  </Dropdown>
-                </div>
-                <div className="p-5">
-                  <div className="flex flex-col sm:flex-row">
-                    <div className="mr-auto">
-                      <a href="" className="font-medium">
-                        Wordpress Template
-                      </a>
-                      <div className="text-slate-500 mt-1">
-                        HTML, PHP, Mysql
-                      </div>
-                    </div>
-                    <div className="flex">
-                      <div className="w-32 -ml-2 sm:ml-0 mt-5 mr-auto sm:mr-5">
-                        <SimpleLineChart height={30} />
-                      </div>
-                      <div className="text-center">
-                        <div className="font-medium">6.5k</div>
-                        <div className="bg-success/20 text-success rounded px-2 mt-1.5">
-                          +150
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex flex-col sm:flex-row mt-5">
-                    <div className="mr-auto">
-                      <a href="" className="font-medium">
-                        Bootstrap HTML Template
-                      </a>
-                      <div className="text-slate-500 mt-1">
-                        HTML, PHP, Mysql
-                      </div>
-                    </div>
-                    <div className="flex">
-                      <div className="w-32 -ml-2 sm:ml-0 mt-5 mr-auto sm:mr-5">
-                        <SimpleLineChart height={30} />
-                      </div>
-                      <div className="text-center">
-                        <div className="font-medium">2.5k</div>
-                        <div className="bg-pending/10 text-pending rounded px-2 mt-1.5">
-                          +150
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex flex-col sm:flex-row mt-5">
-                    <div className="mr-auto">
-                      <a href="" className="font-medium">
-                        Tailwind HTML Template
-                      </a>
-                      <div className="text-slate-500 mt-1">
-                        HTML, PHP, Mysql
-                      </div>
-                    </div>
-                    <div className="flex">
-                      <div className="w-32 -ml-2 sm:ml-0 mt-5 mr-auto sm:mr-5">
-                        <SimpleLineChart height={30} />
-                      </div>
-                      <div className="text-center">
-                        <div className="font-medium">3.4k</div>
-                        <div className="bg-primary/10 text-primary rounded px-2 mt-1.5">
-                          +150
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+              <div className="span-cols-6">
+                {recycles.map((val) => (
+                  <div>{JSON.stringify(val)}</div>
+                ))}
               </div>
-              {/* END: Top Categories */}
-              {/* BEGIN: Work In Progress */}
-              <TabGroup className="intro-y box col-span-12 lg:col-span-6">
-                <div className="flex items-center px-5 py-5 sm:py-0 border-b border-slate-200/60 dark:border-darkmode-400">
-                  <h2 className="font-medium text-base mr-auto">
-                    Work In Progress
-                  </h2>
-                  <Dropdown className="ml-auto sm:hidden">
-                    <DropdownToggle tag="a" className="w-5 h-5 block" href="#">
-                      <Lucide
-                        icon="MoreHorizontal"
-                        className="w-5 h-5 text-slate-500"
-                      />
-                    </DropdownToggle>
-                    <DropdownMenu className="w-40">
-                      <DropdownContent tag="div">
-                        <TabList className="block">
-                          <Tab
-                            fullWidth={false}
-                            className="dropdown-item cursor-pointer"
-                          >
-                            New
-                          </Tab>
-                          <Tab
-                            fullWidth={false}
-                            className="dropdown-item cursor-pointer"
-                          >
-                            Last Week
-                          </Tab>
-                        </TabList>
-                      </DropdownContent>
-                    </DropdownMenu>
-                  </Dropdown>
-                  <TabList className="nav-link-tabs w-auto ml-auto hidden sm:flex">
-                    <Tab fullWidth={false} className="py-5 cursor-pointer">
-                      New
-                    </Tab>
-                    <Tab fullWidth={false} className="py-5 cursor-pointer">
-                      Last Week
-                    </Tab>
-                  </TabList>
-                </div>
-                <div className="p-5">
-                  <TabPanels>
-                    <TabPanel>
-                      <div>
-                        <div className="flex">
-                          <div className="mr-auto">Pending Tasks</div>
-                          <div>20%</div>
-                        </div>
-                        <div className="progress h-1 mt-2">
-                          <div
-                            className="progress-bar w-1/2 bg-primary"
-                            role="progressbar"
-                            aria-valuenow="0"
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                          ></div>
-                        </div>
-                      </div>
-                      <div className="mt-5">
-                        <div className="flex">
-                          <div className="mr-auto">Completed Tasks</div>
-                          <div>2 / 20</div>
-                        </div>
-                        <div className="progress h-1 mt-2">
-                          <div
-                            className="progress-bar w-1/4 bg-primary"
-                            role="progressbar"
-                            aria-valuenow="0"
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                          ></div>
-                        </div>
-                      </div>
-                      <div className="mt-5">
-                        <div className="flex">
-                          <div className="mr-auto">Tasks In Progress</div>
-                          <div>42</div>
-                        </div>
-                        <div className="progress h-1 mt-2">
-                          <div
-                            className="progress-bar w-3/4 bg-primary"
-                            role="progressbar"
-                            aria-valuenow="0"
-                            aria-valuemin="0"
-                            aria-valuemax="100"
-                          ></div>
-                        </div>
-                      </div>
-                      <a
-                        href=""
-                        className="btn btn-secondary block w-40 mx-auto mt-5"
-                      >
-                        View More Details
-                      </a>
-                    </TabPanel>
-                  </TabPanels>
-                </div>
-              </TabGroup>
-              {/* END: Work In Progress */}
-              {/* BEGIN: Daily Sales */}
-              <div className="intro-y box col-span-12 lg:col-span-6">
-                <div className="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
-                  <h2 className="font-medium text-base mr-auto">Daily Sales</h2>
-                  <Dropdown className="ml-auto sm:hidden">
-                    <DropdownToggle tag="a" className="w-5 h-5 block" href="#">
-                      <Lucide
-                        icon="MoreHorizontal"
-                        className="w-5 h-5 text-slate-500"
-                      />
-                    </DropdownToggle>
-                    <DropdownMenu className="w-40">
-                      <DropdownContent>
-                        <DropdownItem>
-                          <Lucide icon="File" className="w-4 h-4 mr-2" />{" "}
-                          Download Excel
-                        </DropdownItem>
-                      </DropdownContent>
-                    </DropdownMenu>
-                  </Dropdown>
-                  <button className="btn btn-outline-secondary hidden sm:flex">
-                    <Lucide icon="File" className="w-4 h-4 mr-2" /> Download
-                    Excel
-                  </button>
-                </div>
-                <div className="p-5">
-                  <div className="relative flex items-center">
-                    <div className="w-12 h-12 flex-none image-fit">
-                      <img
-                        alt="Midone Tailwind HTML Admin Template"
-                        className="rounded-full"
-                        src={$f()[0].photos[0]}
-                      />
-                    </div>
-                    <div className="ml-4 mr-auto">
-                      <a href="" className="font-medium">
-                        {$f()[0].users[0].name}
-                      </a>
-                      <div className="text-slate-500 mr-5 sm:mr-5">
-                        Bootstrap 4 HTML Admin Template
-                      </div>
-                    </div>
-                    <div className="font-medium text-slate-600 dark:text-slate-500">
-                      +$19
-                    </div>
-                  </div>
-                  <div className="relative flex items-center mt-5">
-                    <div className="w-12 h-12 flex-none image-fit">
-                      <img
-                        alt="Midone Tailwind HTML Admin Template"
-                        className="rounded-full"
-                        src={$f()[1].photos[0]}
-                      />
-                    </div>
-                    <div className="ml-4 mr-auto">
-                      <a href="" className="font-medium">
-                        {$f()[1].users[0].name}
-                      </a>
-                      <div className="text-slate-500 mr-5 sm:mr-5">
-                        Tailwind HTML Admin Template
-                      </div>
-                    </div>
-                    <div className="font-medium text-slate-600 dark:text-slate-500">
-                      +$25
-                    </div>
-                  </div>
-                  <div className="relative flex items-center mt-5">
-                    <div className="w-12 h-12 flex-none image-fit">
-                      <img
-                        alt="Midone Tailwind HTML Admin Template"
-                        className="rounded-full"
-                        src={$f()[2].photos[0]}
-                      />
-                    </div>
-                    <div className="ml-4 mr-auto">
-                      <a href="" className="font-medium">
-                        {$f()[2].users[0].name}
-                      </a>
-                      <div className="text-slate-500 mr-5 sm:mr-5">
-                        Vuejs HTML Admin Template
-                      </div>
-                    </div>
-                    <div className="font-medium text-slate-600 dark:text-slate-500">
-                      +$21
-                    </div>
-                  </div>
-                </div>
-              </div>
-              {/* END: Daily Sales */}
-              {/* BEGIN: Latest Tasks */}
-              <TabGroup className="intro-y box col-span-12 lg:col-span-6">
-                <div className="flex items-center px-5 py-5 sm:py-0 border-b border-slate-200/60 dark:border-darkmode-400">
-                  <h2 className="font-medium text-base mr-auto">
-                    Latest Tasks
-                  </h2>
-                  <Dropdown className="ml-auto sm:hidden">
-                    <DropdownToggle tag="a" className="w-5 h-5 block" href="#">
-                      <Lucide
-                        icon="MoreHorizontal"
-                        className="w-5 h-5 text-slate-500"
-                      />
-                    </DropdownToggle>
-                    <DropdownMenu className="w-40">
-                      <DropdownContent tag="div">
-                        <TabList className="block">
-                          <Tab
-                            fullWidth={false}
-                            className="dropdown-item cursor-pointer"
-                          >
-                            New
-                          </Tab>
-                          <Tab
-                            fullWidth={false}
-                            className="dropdown-item cursor-pointer"
-                          >
-                            Last Week
-                          </Tab>
-                        </TabList>
-                      </DropdownContent>
-                    </DropdownMenu>
-                  </Dropdown>
-                  <TabList className="nav-link-tabs w-auto ml-auto hidden sm:flex">
-                    <Tab fullWidth={false} className="py-5 cursor-pointer">
-                      New
-                    </Tab>
-                    <Tab fullWidth={false} className="py-5 cursor-pointer">
-                      Last Week
-                    </Tab>
-                  </TabList>
-                </div>
-                <div className="p-5">
-                  <TabPanels>
-                    <TabPanel>
-                      <div className="flex items-center">
-                        <div className="border-l-2 border-primary dark:border-primary pl-4">
-                          <a href="" className="font-medium">
-                            Create New Campaign
-                          </a>
-                          <div className="text-slate-500">10:00 AM</div>
-                        </div>
-                        <div className="form-check form-switch ml-auto">
-                          <input className="form-check-input" type="checkbox" />
-                        </div>
-                      </div>
-                      <div className="flex items-center mt-5">
-                        <div className="border-l-2 border-primary dark:border-primary pl-4">
-                          <a href="" className="font-medium">
-                            Meeting With Client
-                          </a>
-                          <div className="text-slate-500">02:00 PM</div>
-                        </div>
-                        <div className="form-check form-switch ml-auto">
-                          <input className="form-check-input" type="checkbox" />
-                        </div>
-                      </div>
-                      <div className="flex items-center mt-5">
-                        <div className="border-l-2 border-primary dark:border-primary pl-4">
-                          <a href="" className="font-medium">
-                            Create New Repository
-                          </a>
-                          <div className="text-slate-500">04:00 PM</div>
-                        </div>
-                        <div className="form-check form-switch ml-auto">
-                          <input className="form-check-input" type="checkbox" />
-                        </div>
-                      </div>
-                    </TabPanel>
-                  </TabPanels>
-                </div>
-              </TabGroup>
-              {/* END: Latest Tasks */}
-              {/* BEGIN: General Statistic */}
-              <div className="intro-y box col-span-12">
-                <div className="flex items-center px-5 py-5 sm:py-3 border-b border-slate-200/60 dark:border-darkmode-400">
-                  <h2 className="font-medium text-base mr-auto">
-                    General Statistics
-                  </h2>
-                  <Dropdown className="ml-auto sm:hidden">
-                    <DropdownToggle className="w-5 h-5 block" href="#">
-                      <Lucide
-                        icon="MoreHorizontal"
-                        className="w-5 h-5 text-slate-500"
-                      />
-                    </DropdownToggle>
-                    <DropdownMenu className="w-40">
-                      <DropdownContent>
-                        <DropdownItem>
-                          <Lucide icon="File" className="w-4 h-4 mr-2" />{" "}
-                          Download XML
-                        </DropdownItem>
-                      </DropdownContent>
-                    </DropdownMenu>
-                  </Dropdown>
-                  <button className="btn btn-outline-secondary hidden sm:flex">
-                    <Lucide icon="File" className="w-4 h-4 mr-2" /> Download XML
-                  </button>
-                </div>
-                <div className="grid grid-cols-1 2xl:grid-cols-7 gap-6 p-5">
-                  <div className="2xl:col-span-2">
-                    <div className="grid grid-cols-2 gap-6">
-                      <div className="col-span-2 sm:col-span-1 2xl:col-span-2 box dark:bg-darkmode-500 p-5">
-                        <div className="font-medium">Net Worth</div>
-                        <div className="flex items-center mt-1 sm:mt-0">
-                          <div className="mr-4 w-20 flex">
-                            USP:
-                            <span className="ml-3 font-medium text-success">
-                              +23%
-                            </span>
-                          </div>
-                          <div className="w-5/6 overflow-auto">
-                            <SimpleLineChart height={51} />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-span-2 sm:col-span-1 2xl:col-span-2 box dark:bg-darkmode-500 p-5">
-                        <div className="font-medium">Sales</div>
-                        <div className="flex items-center mt-1 sm:mt-0">
-                          <div className="mr-4 w-20 flex">
-                            USP:
-                            <span className="ml-3 font-medium text-danger">
-                              -5%
-                            </span>
-                          </div>
-                          <div className="w-5/6 overflow-auto">
-                            <SimpleLineChart height={51} />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-span-2 sm:col-span-1 2xl:col-span-2 box dark:bg-darkmode-500 p-5">
-                        <div className="font-medium">Profit</div>
-                        <div className="flex items-center mt-1 sm:mt-0">
-                          <div className="mr-4 w-20 flex">
-                            USP:
-                            <span className="ml-3 font-medium text-danger">
-                              -10%
-                            </span>
-                          </div>
-                          <div className="w-5/6 overflow-auto">
-                            <SimpleLineChart height={51} />
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-span-2 sm:col-span-1 2xl:col-span-2 box dark:bg-darkmode-500 p-5">
-                        <div className="font-medium">Products</div>
-                        <div className="flex items-center mt-1 sm:mt-0">
-                          <div className="mr-4 w-20 flex">
-                            USP:
-                            <span className="ml-3 font-medium text-success">
-                              +55%
-                            </span>
-                          </div>
-                          <div className="w-5/6 overflow-auto">
-                            <SimpleLineChart height={51} />
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="2xl:col-span-5 w-full">
-                    <div className="flex justify-center mt-8">
-                      <div className="flex items-center mr-5">
-                        <div className="w-2 h-2 bg-primary rounded-full mr-3"></div>
-                        <span>Product Profit</span>
-                      </div>
-                      <div className="flex items-center">
-                        <div className="w-2 h-2 bg-slate-300 rounded-full mr-3"></div>
-                        <span>Author Sales</span>
-                      </div>
-                    </div>
-                    <div className="mt-8">
-                      <StackedBarChart1 height={420} />
-                    </div>
-                  </div>
-                </div>
+              {/* END: General Statistic */}
+              {/* BEGIN: Top Categories */}
+              <div className="span-cols-6">
+                {transfers.map((val) => (
+                  <div>{JSON.stringify(val)}</div>
+                ))}
               </div>
               {/* END: General Statistic */}
             </div>
@@ -588,7 +172,7 @@ function Main(props) {
         </TabPanels>
       </TabGroup>
     </>
-  );
+  )
 }
 
-export default Main;
+export default Main

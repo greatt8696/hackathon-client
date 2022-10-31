@@ -1,17 +1,23 @@
 import { io } from "socket.io-client";
 
-const userSocket = io("ws://192.168.0.108:3636/user");
-const tradeSocket = io("ws://192.168.0.108:3636/trade");
-const socket = io("ws://192.168.0.108:3636");
+// const userSocket = io("ws://192.168.0.108:3636/user");
+// const tradeSocket = io("ws://192.168.0.108:3636/trade");
+// const socket = io("ws://192.168.0.108:3636");
+
 // const userSocket = io("ws://119.149.42.142:36360/user");
 // const tradeSocket = io("ws://119.149.42.142:36360/trade");
 // const socket = io("ws://119.149.42.142:36360");
-// const userSocket = io("ws://localhost:3636/user");
-// const tradeSocket = io("ws://localhost:3636/trade");
-// const socket = io("ws://localhost:3636");
+
+const userSocket = io("ws://localhost:3636/user");
+const tradeSocket = io("ws://localhost:3636/trade");
+const socket = io("ws://localhost:3636");
 
 function getTradeSocket(dispatch) {
   tradeSocket.on("order", (arg) => {});
+  tradeSocket.on("recyclePrice", (arg) => {
+    dispatch({ type: "UPDATE_RECYCLE_PRICE", payload: arg });
+  });
+
   tradeSocket.on("price", (arg) => {
     const {
       code,

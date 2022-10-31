@@ -2,7 +2,8 @@ const initState = {
   users: [],
   wallets: [],
   recycles: [],
-  exchangeTransactions: [],
+  transferTransactions: [],
+  recycleTransactions: [],
   currentTransaction: {},
 };
 
@@ -32,6 +33,18 @@ const userReducer = (state = initState, action) => {
       return {
         ...state,
         orderbooks: payload,
+      };
+    case "SET_TRANSFER_TRANSACTION":
+      console.log("SET_TRANSFER_TRANSACTION", payload);
+      return {
+        ...state,
+        transferTransactions: payload,
+      };
+    case "SET_RECYCLE_TRANSACTION":
+      console.log("SET_RECYCLE_TRANSACTION", payload);
+      return {
+        ...state,
+        recycleTransactions: payload,
       };
 
     default:

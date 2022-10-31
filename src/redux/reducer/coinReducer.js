@@ -42,6 +42,7 @@ const initState = {
   coinsOrderbook: [...coinsPrice],
   selectedOrderbook: { ...orderbookSlot },
   selectedOrderPrice: {},
+  recyclePrice: {},
 };
 
 const coinReducer = (state = initState, action) => {
@@ -74,6 +75,13 @@ const coinReducer = (state = initState, action) => {
       return {
         ...state,
         candles: { ...payload },
+      };
+
+    case "UPDATE_RECYCLE_PRICE":
+      //console.log("UPDATE_RECYCLE_PRICE",payload);
+      return {
+        ...state,
+        recyclePrice: payload,
       };
 
     case "CHANGE_TRANSACTION":

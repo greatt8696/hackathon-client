@@ -14,6 +14,11 @@ const sideMenu = atom({
         subMenu: [
           {
             icon: "Home",
+            pathname: "/dashboard-overview-0",
+            title: "거래소 리스트",
+          },
+          {
+            icon: "Home",
             pathname: "/dashboard-overview-1",
             title: "서울 거래소",
           },
@@ -25,64 +30,32 @@ const sideMenu = atom({
           {
             icon: "Home",
             pathname: "/dashboard-overview-3",
-            title: "대전 거래소",
+            title: "세종 거래소",
           },
           {
             icon: "Home",
             pathname: "/dashboard-overview-4",
-            title: "대구 거래소",
+            title: "대전 거래소",
           },
           {
             icon: "Home",
             pathname: "/dashboard-overview-5",
-            title: "광주 거래소",
+            title: "강원 거래소",
           },
           {
             icon: "Home",
             pathname: "/dashboard-overview-6",
+            title: "대구 거래소",
+          },
+          {
+            icon: "Home",
+            pathname: "/dashboard-overview-7",
+            title: "광주 거래소",
+          },
+          {
+            icon: "Home",
+            pathname: "/dashboard-overview-8",
             title: "부산 거래소",
-          },
-        ],
-      },
-      {
-        icon: "Users",
-        title: "제휴 기업 관리",
-        subMenu: [
-          {
-            icon: "",
-            pathname: "/users-layout-1",
-            title: "AI 객체인식 기업",
-          },
-          {
-            icon: "",
-            pathname: "/users-layout-2",
-            title: "도심공기측정 기업",
-          },
-          {
-            icon: "",
-            pathname: "/users-layout-3",
-            title: "드론 관제 기업",
-          },
-        ],
-      },
-      {
-        icon: "Users",
-        title: "실시간 트랜잭션",
-        subMenu: [
-          {
-            icon: "",
-            pathname: "/users-layout-1",
-            title: "재활용 거래 트랜잭션",
-          },
-          {
-            icon: "",
-            pathname: "/users-layout-2",
-            title: "폐기물 입출 트랜잭션",
-          },
-          {
-            icon: "",
-            pathname: "/users-layout-3",
-            title: "유저 트랜잭션",
           },
         ],
       },
@@ -101,13 +74,48 @@ const sideMenu = atom({
         pathname: "/file-manager",
         title: "ESG 포인트",
       },
+      {
+        icon: "MessageSquare",
+        pathname: "/chat",
+        title: "채팅",
+      },
+      {
+        icon: "FileText",
+        pathname: "/post",
+        title: "게시판",
+      },
+      {
+        icon: "Calendar",
+        pathname: "/calendar",
+        title: "달력",
+      },
       "devider",
       {
         icon: "Edit",
         title: "저장소",
         pathname: "/crud-data-list",
       },
-
+      {
+        icon: "Users",
+        title: "유저관리",
+        subMenu: [
+          {
+            icon: "",
+            pathname: "/users-layout-1",
+            title: "Layout 1",
+          },
+          {
+            icon: "",
+            pathname: "/users-layout-2",
+            title: "Layout 2",
+          },
+          {
+            icon: "",
+            pathname: "/users-layout-3",
+            title: "Layout 3",
+          },
+        ],
+      },
       {
         icon: "Trello",
         title: "기획자 프로필",

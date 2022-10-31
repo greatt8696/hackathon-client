@@ -7,39 +7,39 @@ import {
   Tab,
   TabPanels,
   TabPanel,
-} from "@/base-components";
-import ReportDonutChart from "@/components/report-donut-chart/Main";
+} from '@/base-components'
+import ReportDonutChart from '@/components/report-donut-chart/Main'
 // import ReportMap from "@/components/report-map/Main";
-import { useRef, useState } from "react";
-import Test from "./Test";
-import { useDispatch, useSelector } from "react-redux";
-import CandleChart from "../../components/candleChart/CandleChart";
-import PricePanel from "../../components/PricePanel";
-import { useEffect } from "react";
-import ChangeLabel from "./ChangeLabel";
+import { useRef, useState } from 'react'
+import Test from './Test'
+import { useDispatch, useSelector } from 'react-redux'
+import CandleChart from '../../components/candleChart/CandleChart'
+import PricePanel from '../../components/PricePanel'
+import { useEffect } from 'react'
+import ChangeLabel from './ChangeLabel'
+import PricePanelRecycle from '../../components/PricePanelRecycle'
 
 function Main() {
-  const dispatch = useDispatch();
-  const coinsPrice = useSelector((state) => state.coinReducer.coinsPrice);
-  const candles = useSelector((state) => state.coinReducer.candles);
-  const [coin, setCoin] = useState({});
-  const [change, setChange] = useState("");
+  const dispatch = useDispatch()
+  const coinsPrice = useSelector((state) => state.coinReducer.coinsPrice)
+  const recyclePrice = useSelector((state) => state.coinReducer.recyclePrice)
+  const candles = useSelector((state) => state.coinReducer.candles)
+  const [coin, setCoin] = useState({})
+  const [change, setChange] = useState('')
 
-  const importantNotesRef = useRef();
+  const importantNotesRef = useRef()
   const prevImportantNotes = () => {
-    importantNotesRef.current.tns.goTo("prev");
-  };
+    importantNotesRef.current.tns.goTo('prev')
+  }
   const nextImportantNotes = () => {
-    importantNotesRef.current.tns.goTo("next");
-  };
+    importantNotesRef.current.tns.goTo('next')
+  }
 
   useEffect(() => {
-    setCoin(coinsPrice[0]);
-  }, [coinsPrice[0]]);
+    console.log(coinsPrice[0]);
+    setCoin(coinsPrice[0])
+  }, [coinsPrice[0]])
 
-  useEffect(() => {
-    // console.log(coin);
-  }, [coin]);
 
   return (
     <>
@@ -309,14 +309,14 @@ function Main() {
                     그린코인
                   </h2>
                   <div className="mt-1.5 flex items-center">
-                    <ChangeLabel coin={coin} text={"text-2xl"}></ChangeLabel>
+                    <ChangeLabel coin={coin} text={'text-2xl'}></ChangeLabel>
                   </div>
                 </div>
                 <div className="">
                   <CandleChart
                     candles={candles}
-                    exchange={"서울거래소"}
-                    code={"KRW-BTC"}
+                    exchange={'서울거래소'}
+                    code={'KRW-BTC'}
                   ></CandleChart>
                 </div>
               </div>
@@ -328,7 +328,8 @@ function Main() {
                 </div>
                 <div className="mt-5">
                   {coinsPrice.map((coin) => (
-                    <PricePanel
+                    <PricePanelRecycle
+                      recyclePrice={recyclePrice[coin.exchange]}
                       coinsPrice={coinsPrice}
                       key={coin.code}
                       coin={coin}
@@ -344,7 +345,7 @@ function Main() {
         </div>
       </div>
     </>
-  );
+  )
 }
 
-export default Main;
+export default Main

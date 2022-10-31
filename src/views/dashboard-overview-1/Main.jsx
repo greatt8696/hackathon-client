@@ -24,20 +24,24 @@ import { useRef } from "react";
 import womanIllustrationUrl from "@/assets/images/woman-illustration.svg";
 import phoneIllustrationUrl from "@/assets/images/phone-illustration.svg";
 import CandleChart from "../../components/candleChart/CandleChart";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import "./img/Order.css"
+import "./img/Orderbook.css"
+import "./img/Trade.css"
+import "./img/TradingSimulator.css"
 import PricePanel from "../../components/PricePanel";
-import { useEffect } from "react";
-
+import PricePanelRecycle from "../../components/PricePanelRecycle";
 function Main() {
-  const dispatch = useDispatch();
-
+  const importantNotesRef = useRef();
+  const prevImportantNotes = () => {
+    importantNotesRef.current.tns.goTo("prev");
+  };
+  const nextImportantNotes = () => {
+    importantNotesRef.current.tns.goTo("next");
+  };
   const coinsPrice = useSelector((state) => state.coinReducer.coinsPrice);
   const candles = useSelector((state) => state.coinReducer.candles);
-  const users = useSelector((state) => state.userReducer.users);
-
-  useEffect(() => {
-    console.log(users);
-  }, [users]);
+  const recyclePrice = useSelector((state) => state.coinReducer.recyclePrice)
 
   return (
     <>
@@ -49,103 +53,494 @@ function Main() {
               <Alert className="box bg-primary text-white flex items-center mb-6">
                 {({ dismiss }) => (
                   <>
-                    <span>인피니티팀-시연 페이지입니다.</span>
+                    <span>K-Digital Training Hackathon INFINITY/TEAM </span>
                     <button
                       type="button"
                       className="btn-close text-white"
                       onClick={dismiss}
-                      aria-label="Close"
-                    >
+                      aria-label="Close">
                       <Lucide icon="X" className="w-4 h-4" />
                     </button>
                   </>
                 )}
               </Alert>
             </div>
-            {/* BEGIN: Notification */}
-            {/* BEGIN: Official Store */}
-            <div className="intro-y col-span-6 box p-5 mt-12 sm:mt-5">
-              <div>서울거래소</div>
+   
+            {/* 인천거래소부분 */}
+            <div className="intro-y col-span-12 box p-5 mt-12 sm:mt-12">
+              <div className="font-bold text-lg">서울거래소</div>
               <CandleChart
                 candles={candles}
                 className="col-span-6"
                 exchange={"서울거래소"}
-                code={"KRW-BTC"}
-              ></CandleChart>
+                code={"KRW-BTC"}></CandleChart>
             </div>
-            <div className="intro-y col-span-6 box p-5 mt-12 sm:mt-5">
-              <div>인천거래소</div>
-              <CandleChart
-                candles={candles}
-                className="col-span-6"
-                exchange={"인천거래소"}
-                code={"KRW-ETH"}
-              ></CandleChart>
+ 
+            <div className="col-span-12 sm:col-span-6 lg:col-span-4 xl:col-span-12 ">
+              <div className="mt-9">
+              <div className="Order__Box Section">
+    <div className="Order__Inner">
+        <div className="Orderbook__Wrap">
+            <div className="Orderbook__Head">
+                <div className="Orderbook__Div">
+                    <p>매수량</p>
+                </div>
+                <div className="Orderbook__Div">
+                    <p>가격</p>
+                </div>
+                <div className="Orderbook__Div">
+                    <p>매도량</p>
+                </div>
             </div>
-            <div className="intro-y col-span-6 box p-5 mt-12 sm:mt-5">
-              <div>세종거래소</div>
-              <CandleChart
-                candles={candles}
-                className="col-span-6"
-                exchange={"세종거래소"}
-                code={"KRW-XRP"}
-              ></CandleChart>
+            <div className="Orderbook">
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size">
+                        <p>1.1598
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Price">
+                        <p>28,800,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size"></div>
+                </div>
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size">
+                        <p>0.0500
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Price">
+                        <p>28,798,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size"></div>
+                </div>
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size">
+                        <p>1.1350
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Price">
+                        <p>28,796,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size"></div>
+                </div>
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size">
+                        <p>0.0175
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Price">
+                        <p>28,792,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size"></div>
+                </div>
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size">
+                        <p>1.1300
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Price">
+                        <p>28,789,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size"></div>
+                </div>
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size">
+                        <p>0.7140
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Price">
+                        <p>28,788,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size"></div>
+                </div>
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size">
+                        <p>0.1380
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Price">
+                        <p>28,784,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size"></div>
+                </div>
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size">
+                        <p>0.9740
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Price">
+                        <p>28,782,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size"></div>
+                </div>
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size">
+                        <p>2.4880
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Price">
+                        <p>28,779,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size"></div>
+                </div>
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size">
+                        <p>1.6710
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Price">
+                        <p>28,776,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size"></div>
+                </div>
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size">
+                        <p>1.3634
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Price">
+                        <p>28,772,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size"></div>
+                </div>
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size">
+                        <p>0.6000
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Price">
+                        <p>28,771,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size"></div>
+                </div>
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size">
+                        <p>0.5735
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Price">
+                        <p>28,757,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size"></div>
+                </div>
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size">
+                        <p>0.1597
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Price">
+                        <p>28,738,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size"></div>
+                </div>
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size">
+                        <p>0.2563
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Price">
+                        <p>28,736,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size"></div>
+                </div>
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size"></div>
+                    <div className="Orderbook__Price">
+                        <p>28,736,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size">
+                        <p>0.4491
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                </div>
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size"></div>
+                    <div className="Orderbook__Price">
+                        <p>28,738,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size">
+                        <p>0.5621
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                </div>
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size"></div>
+                    <div className="Orderbook__Price">
+                        <p>28,757,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size">
+                        <p>0.4626
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                </div>
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size"></div>
+                    <div className="Orderbook__Price">
+                        <p>28,771,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size">
+                        <p>0.1537
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                </div>
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size"></div>
+                    <div className="Orderbook__Price">
+                        <p>28,772,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size">
+                        <p>0.7415
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                </div>
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size"></div>
+                    <div className="Orderbook__Price">
+                        <p>28,776,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size">
+                        <p>1.4305
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                </div>
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size"></div>
+                    <div className="Orderbook__Price">
+                        <p>28,779,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size">
+                        <p>0.0267
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                </div>
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size"></div>
+                    <div className="Orderbook__Price">
+                        <p>28,782,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size">
+                        <p>0.1139
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                </div>
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size"></div>
+                    <div className="Orderbook__Price">
+                        <p>28,784,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size">
+                        <p>0.0361
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                </div>
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size"></div>
+                    <div className="Orderbook__Price">
+                        <p>28,788,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size">
+                        <p>0.0060
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                </div>
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size"></div>
+                    <div className="Orderbook__Price">
+                        <p>28,789,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size">
+                        <p>0.2707
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                </div>
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size"></div>
+                    <div className="Orderbook__Price">
+                        <p>28,792,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size">
+                        <p>0.0253
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                </div>
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size"></div>
+                    <div className="Orderbook__Price">
+                        <p>28,796,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size">
+                        <p>2.5441
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                </div>
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size"></div>
+                    <div className="Orderbook__Price">
+                        <p>28,798,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size">
+                        <p>1.0733
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                </div>
+                <div className="Orderbook__List">
+                    <div className="Orderbook__Size"></div>
+                    <div className="Orderbook__Price">
+                        <p>28,800,000
+                            <span>KRW</span>
+                        </p>
+                    </div>
+                    <div className="Orderbook__Size">
+                        <p>0.0894
+                            <span>BTC</span>
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div className="intro-y col-span-6 box p-5 mt-12 sm:mt-5">
-              <div>대전거래소</div>
-              <CandleChart
-                candles={candles}
-                className="col-span-6"
-                exchange={"대전거래소"}
-                code={"KRW-ADA"}
-              ></CandleChart>
+        </div>
+        <div className="Trade__Box">
+            <div className="Trade__Head">
+                <div className="Trade__Method">
+                    <p className="on">매수</p>
+                </div>
+                <div className="Trade__Method">
+                    <p>매도</p>
+                </div>
             </div>
-            <div className="intro-y col-span-6 box p-5 mt-12 sm:mt-5">
-              <div>강원거래소</div>
-              <CandleChart
-                candles={candles}
-                className="col-span-6"
-                exchange={"강원거래소"}
-                code={"KRW-DOGE"}
-              ></CandleChart>
+            <div className="Trade__Form">
+                <div className="Form__List">
+                    <div className="Form__Title">
+                        <p>보유 원화</p>
+                    </div>
+                    <div className="Form__Des">
+                        <p>100,000,000<span>KRW</span>
+                        </p>
+                    </div>
+                </div>
+                <div className="Form__List">
+                    <div className="Form__Title">
+                        <p>매수 가격</p>
+                    </div>
+                    <div className="Form__Des">
+                        <input type="text" readonly="" value="0"/>
+                            <label>KRW</label>
+                        </div>
+                    </div>
+                    <div className="Form__List">
+                        <div className="Form__Title">
+                            <p>매수 수량</p>
+                        </div>
+                        <div className="Form__Des">
+                            <input type="text" value="0"/>
+                                <label>BTC</label>
+                            </div>
+                        </div>
+                        <div className="Form__List">
+                            <div className="Form__Title">
+                                <p>매수 총액</p>
+                            </div>
+                            <div className="Form__Des">
+                                <p>0<span>KRW</span>
+                                </p>
+                            </div>
+                        </div>
+                        <div className="Form__Submit">
+                            <button type="submit" style={{backgroundColor:"rgb(249,79,79)"}}>매수</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div className="intro-y col-span-6 box p-5 mt-12 sm:mt-5">
-              <div>광주거래소</div>
-              <CandleChart
-                candles={candles}
-                className="col-span-6"
-                exchange={"광주거래소"}
-                code={"KRW-ATOM"}
-              ></CandleChart>
+        </div>
+              </div>
             </div>
-            <div className="intro-y col-span-6 box p-5 mt-12 sm:mt-5">
-              <div>부산거래소</div>
-              <CandleChart
-                candles={candles}
-                className="col-span-6"
-                exchange={"부산거래소"}
-                code={"KRW-SOL"}
-              ></CandleChart>
-            </div>
-            <div className="intro-y col-span-6 box p-5 mt-12 sm:mt-5">
-              <div>울산거래소</div>
-              <CandleChart
-                candles={candles}
-                className="col-span-6"
-                exchange={"울산거래소"}
-                code={"KRW-ETC"}
-              ></CandleChart>
-            </div>
-            <div className="intro-y col-span-6 box p-5 mt-12 sm:mt-5">
-              <div>대구거래소</div>
-              <CandleChart
-                candles={candles}
-                className="col-span-6"
-                exchange={"대구거래소"}
-                code={"KRW-MATIC"}
-              ></CandleChart>
-            </div>
-            {/* END: Weekly Top Products */}
+      
           </div>
         </div>
         <div className="col-span-12 2xl:col-span-3">
@@ -153,10 +548,10 @@ function Main() {
             <div className="2xl:pl-6 grid grid-cols-12 gap-x-6 2xl:gap-x-0 gap-y-6">
               {/* BEGIN: Important Notes */}
               <div className="mt-5 col-span-12">
-                {coinsPrice.map((coin) => (
-                  <PricePanel
+              {coinsPrice.map((coin) => (
+                  <PricePanelRecycle
+                    recyclePrice={recyclePrice[coin.exchange]}
                     coinsPrice={coinsPrice}
-                    candles={candles}
                     key={coin.code}
                     coin={coin}
                     setIsSelect={false}

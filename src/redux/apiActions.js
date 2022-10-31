@@ -17,3 +17,17 @@ export const initAllUsers = async (dispatch) => {
   const { data } = await axios.get(baseUrl + "user/getUsers");
   dispatch({ type: "SET_USERS", payload: data });
 };
+
+export const getRecycleTransaction = async (dispatch, payload) => {
+  const { data } = await axios.post(baseUrl + "user/getRecycleTransaction", {
+    fromId: payload,
+  });
+  dispatch({ type: "SET_RECYCLE_TRANSACTION", payload: data });
+};
+
+export const getTransferTransaction = async (dispatch, payload) => {
+  const { data } = await axios.post(baseUrl + "user/getTransferTransaction", {
+    fromId: payload,
+  });
+  dispatch({ type: "SET_TRANSFER_TRANSACTION", payload: data });
+};

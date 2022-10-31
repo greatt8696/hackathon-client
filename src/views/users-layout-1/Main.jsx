@@ -6,76 +6,63 @@ import {
   DropdownContent,
   DropdownItem,
   Tippy,
-} from "@/base-components";
-import { faker as $f } from "@/utils";
-import * as $_ from "lodash";
-import { useState } from "react";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import { createSearchParams, useLocation, useNavigate } from "react-router-dom";
+} from '@/base-components'
+import { useRef, useState } from 'react'
+import { useEffect } from 'react'
+import { useSelector } from 'react-redux'
+import { createSearchParams, useLocation, useNavigate } from 'react-router-dom'
+
+const USER_LIMIT = 50
 
 function Main() {
-  const nav = useNavigate();
-  const users = useSelector((state) => state.userReducer.users);
-  const [sliceUser, setSliceUser] = useState(users.slice(0, 49));
+  const nav = useNavigate()
+  const location = useLocation()
+  const users = useSelector((state) => state.userReducer.users)
+  const [viewContents, setViewContents] = useState([])
+  const [pagenation, setPagenation] = useState(0)
+  const [startPage, setStartPage] = useState(0)
+  const listRef = useRef([])
+
+  const searchParams = new URLSearchParams(location.search)
+  // 쿼리 취득
+  const name = searchParams.get('name') // id 취득
 
   const navToUser = (name) => {
+
     nav({
-      pathname: "/profile-overview-1",
+      pathname: '/profile-overview-1',
       search: createSearchParams({
-        name,
+        uid:name,
       }).toString(),
-    });
-  };
+    })
+  }
 
   useEffect(() => {
-    console.log(sliceUser);
-    setSliceUser(users.slice(0, 49));
-  }, [users]);
+    if (listRef.current.children?.length !== 0) {
+      listRef.current.children?.forEach((el) => listRef.current.removeChild(el))
+    }
 
-  const location = useLocation();
-  console.log(location);
+    setViewContents(users.slice(pagenation, pagenation + USER_LIMIT))
+  }, [pagenation])
+
+  const pagenationHandler = (e) => setPagenation(e.target.name)
+  const selectHandler = (e) => setPagenation(e.target.value)
+
+  useEffect(() => {}, [])
+
   // {pathname: '/query', search: '?id=10&count=2022', hash: '', state: null, key: 'default'}
 
   // search 부분을 URLSearchParams 객체로 생성
-  const searchParams = new URLSearchParams(location.search);
   // const searchParams = new URLSearchParams(useLocation().search); // 이것도 가능
-
-  // 쿼리 취득
-  const id = searchParams.get("id"); // id 취득
-  const count = searchParams.get("count"); // count 취득
-  console.log("id: ", id); // id: 10
-  console.log("count: ", count); // count: 2022
 
   return (
     <>
-      <h2 className="intro-y text-lg font-medium mt-10">Users Layout</h2>
+      <h2 className="intro-y text-lg font-medium mt-10">유저 관리창</h2>
       <div className="grid grid-cols-12 gap-6 mt-5">
         {/* BEGIN: top Bar */}
         <div className="intro-y col-span-12 flex flex-wrap sm:flex-nowrap items-center mt-2">
-          <button className="btn btn-primary shadow-md mr-2">
-            Add New User
-          </button>
-          <Dropdown>
-            <DropdownToggle className="btn px-2 box">
-              <span className="w-5 h-5 flex items-center justify-center">
-                <Lucide icon="Plus" className="w-4 h-4" />
-              </span>
-            </DropdownToggle>
-            <DropdownMenu className="w-40">
-              <DropdownContent>
-                <DropdownItem>
-                  <Lucide icon="Users" className="w-4 h-4 mr-2" /> Add Group
-                </DropdownItem>
-                <DropdownItem>
-                  <Lucide icon="MessageCircle" className="w-4 h-4 mr-2" /> Send
-                  Message
-                </DropdownItem>
-              </DropdownContent>
-            </DropdownMenu>
-          </Dropdown>
           <div className="hidden md:block mx-auto text-slate-500">
-            Showing 1 to 10 of 150 entries
+            {`${users.length} 유저 중 ${USER_LIMIT}명 조회 `}
           </div>
           <div className="w-full sm:w-auto mt-3 sm:mt-0 sm:ml-auto md:ml-0">
             <div className="w-56 relative text-slate-500">
@@ -93,13 +80,13 @@ function Main() {
         </div>
         {/* END: top Bar */}
         {/* BEGIN: Users Layout */}
-        {sliceUser.map((user) => (
+        {viewContents.map((user, idx) => (
           <div
             key={user.uid}
-            className="intro-y col-span-3 h-36"
-            onClick={() => navToUser(user.uid)}
+            className="intro-y col-span-3 h-36 cursor-pointer "
+            onClick={() => navToUser(user.walletId)}
           >
-            <div className="box h-full">
+            <div className="box h-full p-3 flex flex-col justify-between transition-all hover:bg-green-600/20 hover:scale-105">
               <div>{`아이디 : ${user.userId}`}</div>
               <div>{`이름 : ${user.name}`}</div>
               <div>{`업무 : ${user.role}`}</div>
@@ -134,31 +121,21 @@ function Main() {
                   <Lucide icon="ChevronLeft" className="w-4 h-4" />
                 </a>
               </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  ...
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  1
-                </a>
-              </li>
-              <li className="page-item active">
-                <a className="page-link" href="#">
-                  2
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  3
-                </a>
-              </li>
-              <li className="page-item">
-                <a className="page-link" href="#">
-                  ...
-                </a>
-              </li>
+
+              {Array(10)
+                .fill(1)
+                .map((_, idx) => (
+                  <li className="page-item">
+                    <a
+                      className="page-link"
+                      name={idx + 1}
+                      onClick={pagenationHandler}
+                    >
+                      {idx + 1}
+                    </a>
+                  </li>
+                ))}
+
               <li className="page-item">
                 <a className="page-link" href="#">
                   <Lucide icon="ChevronRight" className="w-4 h-4" />
@@ -171,17 +148,21 @@ function Main() {
               </li>
             </ul>
           </nav>
-          <select className="w-20 form-select box mt-3 sm:mt-0">
-            <option>10</option>
-            <option>25</option>
-            <option>35</option>
-            <option>50</option>
+          <select
+            className="w-20 form-select box mt-3 sm:mt-0"
+            onChange={selectHandler}
+          >
+            {Array(10)
+              .fill(1)
+              .map((_, idx) => (
+                <option value={idx * 50}>{idx * 50}</option>
+              ))}
           </select>
         </div>
         {/* END: Pagination */}
       </div>
     </>
-  );
+  )
 }
 
-export default Main;
+export default Main
