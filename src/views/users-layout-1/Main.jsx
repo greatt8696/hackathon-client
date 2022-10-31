@@ -9,8 +9,44 @@ import {
 } from "@/base-components";
 import { faker as $f } from "@/utils";
 import * as $_ from "lodash";
+import { useState } from "react";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { createSearchParams, useLocation, useNavigate } from "react-router-dom";
 
 function Main() {
+  const nav = useNavigate();
+  const users = useSelector((state) => state.userReducer.users);
+  const [sliceUser, setSliceUser] = useState(users.slice(0, 49));
+
+  const navToUser = (name) => {
+    nav({
+      pathname: "/profile-overview-1",
+      search: createSearchParams({
+        name,
+      }).toString(),
+    });
+  };
+
+  useEffect(() => {
+    console.log(sliceUser);
+    setSliceUser(users.slice(0, 49));
+  }, [users]);
+
+  const location = useLocation();
+  console.log(location);
+  // {pathname: '/query', search: '?id=10&count=2022', hash: '', state: null, key: 'default'}
+
+  // search 부분을 URLSearchParams 객체로 생성
+  const searchParams = new URLSearchParams(location.search);
+  // const searchParams = new URLSearchParams(useLocation().search); // 이것도 가능
+
+  // 쿼리 취득
+  const id = searchParams.get("id"); // id 취득
+  const count = searchParams.get("count"); // count 취득
+  console.log("id: ", id); // id: 10
+  console.log("count: ", count); // count: 2022
+
   return (
     <>
       <h2 className="intro-y text-lg font-medium mt-10">Users Layout</h2>
@@ -57,11 +93,32 @@ function Main() {
         </div>
         {/* END: top Bar */}
         {/* BEGIN: Users Layout */}
-        {$_.take($f(), 50).map((faker, fakerKey) => (
-          <div key={fakerKey} className="intro-y col-span-3 h-36">
-            <div className="box h-full">111</div>
+        {sliceUser.map((user) => (
+          <div
+            key={user.uid}
+            className="intro-y col-span-3 h-36"
+            onClick={() => navToUser(user.uid)}
+          >
+            <div className="box h-full">
+              <div>{`아이디 : ${user.userId}`}</div>
+              <div>{`이름 : ${user.name}`}</div>
+              <div>{`업무 : ${user.role}`}</div>
+              <div>{`지갑주소 : ${user.walletId}`}</div>
+            </div>
           </div>
         ))}
+        {/* {sliceUser.map(
+          ({ userId, name, email, role, uid, userId, walletId }) => (
+            <div key={uid} className="intro-y col-span-3 h-36">
+              <div className="box h-full">
+                <div>아이디 : {userId}</div>
+                <div>이름 : {name}</div>
+                <div>업무 : {role}</div>
+                <div>지갑주소 : {walletId}</div>
+              </div>
+            </div>
+          )
+        )} */}
         {/* END: Users Layout */}
         {/* BEGIN: Pagination */}
         <div className="intro-y col-span-12 flex flex-wrap sm:flex-row sm:flex-nowrap items-center">

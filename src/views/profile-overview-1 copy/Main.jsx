@@ -16,16 +16,9 @@ import SimpleLineChart from "@/components/simple-line-chart/Main";
 import SimpleLineChart1 from "@/components/simple-line-chart-1/Main";
 import SimpleLineChart2 from "@/components/simple-line-chart-2/Main";
 import { faker as $f } from "@/utils";
-import { useLocation } from "react-router-dom";
 
-function Main(props) {
-  const location = useLocation();
-  const searchParams = new URLSearchParams(location.search);
-  // 쿼리 취득
-  const name = searchParams.get("name"); // id 취득
-  console.log("name: ", name); // id: 10
-
-  https: return (
+function Main() {
+  return (
     <>
       <div className="intro-y flex items-center mt-8">
         <h2 className="text-lg font-medium mr-auto">Profile Layout</h2>
