@@ -1,21 +1,21 @@
-import React, { useCallback, useState } from 'react'
-import { useEffect } from 'react'
-import { useSelector } from 'react-redux'
-import { List  } from "react-virtualized";
-import Test from './Test'
+import React, { useCallback, useState } from "react";
+import { useEffect } from "react";
+import { useSelector } from "react-redux";
+import { List } from "react-virtualized";
+import Test from "./Test";
 const Main = () => {
   const assetTransactions = useSelector(
-    (state) => state.transferAssetReducer.assetTransactions,
-  )
+    (state) => state.transferAssetReducer.assetTransactions
+  );
   useEffect(() => {
-    console.log(assetTransactions)
-  }, [assetTransactions])
+    console.log(assetTransactions.length);
+  }, [assetTransactions]);
 
-  let [listItem, setListItem] = useState()
+  let [listItem, setListItem] = useState();
 
   const rowRenderer = useCallback(
     ({ index, key, style }) => {
-      setListItem((listItem = assetTransactions[index]))
+      setListItem((listItem = assetTransactions[index]));
       if (listItem) {
         return (
           <Test
@@ -24,11 +24,11 @@ const Main = () => {
             style={style}
             assetTransactions={assetTransactions}
           />
-        )
+        );
       }
     },
-    [assetTransactions, listItem],
-  )
+    [assetTransactions, listItem]
+  );
   return (
     <List
       className="Main"
@@ -38,9 +38,9 @@ const Main = () => {
       rowHeight={64}
       rowRenderer={rowRenderer}
       list={assetTransactions}
-      style={{ outline: 'none' }}
+      style={{ outline: "none" }}
     />
-  )
-}
+  );
+};
 
-export default React.memo(Main)
+export default React.memo(Main);
