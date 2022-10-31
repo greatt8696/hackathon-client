@@ -13,30 +13,31 @@ import {
   TabPanel,
   Alert,
   TinySlider,
-} from '@/base-components'
-import { faker as $f } from '@/utils'
-import * as $_ from 'lodash'
-import classnames from 'classnames'
-import ReportDonutChart from '@/components/report-donut-chart/Main'
-import ReportBarChart from '@/components/report-bar-chart/Main'
-import ReportMap from '@/components/report-map/Main'
-import { useRef } from 'react'
-import womanIllustrationUrl from '@/assets/images/woman-illustration.svg'
-import phoneIllustrationUrl from '@/assets/images/phone-illustration.svg'
-import CandleChart from '../../components/candleChart/CandleChart'
-import { useDispatch, useSelector } from 'react-redux'
-import PricePanel from '../../components/PricePanel'
-import { useEffect } from 'react'
+} from "@/base-components";
+import { faker as $f } from "@/utils";
+import * as $_ from "lodash";
+import classnames from "classnames";
+import ReportDonutChart from "@/components/report-donut-chart/Main";
+import ReportBarChart from "@/components/report-bar-chart/Main";
+import ReportMap from "@/components/report-map/Main";
+import { useRef } from "react";
+import womanIllustrationUrl from "@/assets/images/woman-illustration.svg";
+import phoneIllustrationUrl from "@/assets/images/phone-illustration.svg";
+import CandleChart from "../../components/candleChart/CandleChart";
+import { useDispatch, useSelector } from "react-redux";
+import PricePanel from "../../components/PricePanel";
+import { useEffect } from "react";
 
 function Main() {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const coinsPrice = useSelector((state) => state.coinReducer.coinsPrice)
-  const candles = useSelector((state) => state.coinReducer.candles)
-  const users = useSelector((state) => state.userReducer.users)
+  const coinsPrice = useSelector((state) => state.coinReducer.coinsPrice);
+  const candles = useSelector((state) => state.coinReducer.candles);
+  const users = useSelector((state) => state.userReducer.users);
 
-  useEffect(()=>{console.log(users);},[users])
-
+  useEffect(() => {
+    console.log(users);
+  }, [users]);
 
   return (
     <>
@@ -68,8 +69,8 @@ function Main() {
               <CandleChart
                 candles={candles}
                 className="col-span-6"
-                exchange={'서울거래소'}
-                code={'KRW-BTC'}
+                exchange={"서울거래소"}
+                code={"KRW-BTC"}
               ></CandleChart>
             </div>
             <div className="intro-y col-span-6 box p-5 mt-12 sm:mt-5">
@@ -77,8 +78,8 @@ function Main() {
               <CandleChart
                 candles={candles}
                 className="col-span-6"
-                exchange={'인천거래소'}
-                code={'KRW-ETH'}
+                exchange={"인천거래소"}
+                code={"KRW-ETH"}
               ></CandleChart>
             </div>
             <div className="intro-y col-span-6 box p-5 mt-12 sm:mt-5">
@@ -86,8 +87,8 @@ function Main() {
               <CandleChart
                 candles={candles}
                 className="col-span-6"
-                exchange={'세종거래소'}
-                code={'KRW-XRP'}
+                exchange={"세종거래소"}
+                code={"KRW-XRP"}
               ></CandleChart>
             </div>
             <div className="intro-y col-span-6 box p-5 mt-12 sm:mt-5">
@@ -95,8 +96,8 @@ function Main() {
               <CandleChart
                 candles={candles}
                 className="col-span-6"
-                exchange={'대전거래소'}
-                code={'KRW-ADA'}
+                exchange={"대전거래소"}
+                code={"KRW-ADA"}
               ></CandleChart>
             </div>
             <div className="intro-y col-span-6 box p-5 mt-12 sm:mt-5">
@@ -104,8 +105,8 @@ function Main() {
               <CandleChart
                 candles={candles}
                 className="col-span-6"
-                exchange={'강원거래소'}
-                code={'KRW-DOGE'}
+                exchange={"강원거래소"}
+                code={"KRW-DOGE"}
               ></CandleChart>
             </div>
             <div className="intro-y col-span-6 box p-5 mt-12 sm:mt-5">
@@ -113,8 +114,8 @@ function Main() {
               <CandleChart
                 candles={candles}
                 className="col-span-6"
-                exchange={'광주거래소'}
-                code={'KRW-ATOM'}
+                exchange={"광주거래소"}
+                code={"KRW-ATOM"}
               ></CandleChart>
             </div>
             <div className="intro-y col-span-6 box p-5 mt-12 sm:mt-5">
@@ -122,8 +123,8 @@ function Main() {
               <CandleChart
                 candles={candles}
                 className="col-span-6"
-                exchange={'부산거래소'}
-                code={'KRW-SOL'}
+                exchange={"부산거래소"}
+                code={"KRW-SOL"}
               ></CandleChart>
             </div>
             <div className="intro-y col-span-6 box p-5 mt-12 sm:mt-5">
@@ -131,8 +132,8 @@ function Main() {
               <CandleChart
                 candles={candles}
                 className="col-span-6"
-                exchange={'울산거래소'}
-                code={'KRW-ETC'}
+                exchange={"울산거래소"}
+                code={"KRW-ETC"}
               ></CandleChart>
             </div>
             <div className="intro-y col-span-6 box p-5 mt-12 sm:mt-5">
@@ -140,8 +141,8 @@ function Main() {
               <CandleChart
                 candles={candles}
                 className="col-span-6"
-                exchange={'대구거래소'}
-                code={'KRW-MATIC'}
+                exchange={"대구거래소"}
+                code={"KRW-MATIC"}
               ></CandleChart>
             </div>
             {/* END: Weekly Top Products */}
@@ -169,7 +170,7 @@ function Main() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default Main
+export default Main;

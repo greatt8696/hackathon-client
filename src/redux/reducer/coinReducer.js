@@ -52,7 +52,7 @@ const coinReducer = (state = initState, action) => {
       return {
         ...state,
         coinsPrice: state.coinsPrice.map((coin) => {
-          return { ...coin, ...payload[coin.code] } ;
+          return { ...coin, ...payload[coin.code] };
         }),
       };
 
@@ -74,12 +74,6 @@ const coinReducer = (state = initState, action) => {
       return {
         ...state,
         candles: { ...payload },
-      };
-
-    case "ADD_TRANSACTION":
-      return {
-        ...state,
-        exchangeTransactions: [payload, ...state.exchangeTransactions],
       };
 
     case "CHANGE_TRANSACTION":
@@ -120,10 +114,6 @@ const coinReducer = (state = initState, action) => {
     }
 
     case "CHANGE_ORDERBOOK": {
-      //console.log("CHANGE_ORDERBOOK", state.selectedCoin.code);
-      //if (state.selectedCoin.code === payload.code)
-      //  console.log(state.selectedCoin.code === payload.code && { ...payload });
-
       const splitOrders = {
         ask: [],
         bid: [],

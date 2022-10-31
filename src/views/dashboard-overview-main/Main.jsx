@@ -7,35 +7,39 @@ import {
   Tab,
   TabPanels,
   TabPanel,
-} from '@/base-components'
-import { faker as $f } from '@/utils'
-import * as $_ from 'lodash'
-import classnames from 'classnames'
-import ReportDonutChart from '@/components/report-donut-chart/Main'
+} from "@/base-components";
+import ReportDonutChart from "@/components/report-donut-chart/Main";
 // import ReportMap from "@/components/report-map/Main";
-import { useRef } from 'react'
-import Test from './Test'
-import { useDispatch, useSelector } from 'react-redux'
-import CandleChart from '../../components/candleChart/CandleChart'
-import PricePanel from '../../components/PricePanel'
-import { useEffect } from 'react'
+import { useRef, useState } from "react";
+import Test from "./Test";
+import { useDispatch, useSelector } from "react-redux";
+import CandleChart from "../../components/candleChart/CandleChart";
+import PricePanel from "../../components/PricePanel";
+import { useEffect } from "react";
+import ChangeLabel from "./ChangeLabel";
 
 function Main() {
-  const dispatch = useDispatch()
-  const coinsPrice = useSelector((state) => state.coinReducer.coinsPrice)
-  const candles = useSelector((state) => state.coinReducer.candles)
+  const dispatch = useDispatch();
+  const coinsPrice = useSelector((state) => state.coinReducer.coinsPrice);
+  const candles = useSelector((state) => state.coinReducer.candles);
+  const [coin, setCoin] = useState({});
+  const [change, setChange] = useState("");
 
-  const importantNotesRef = useRef()
+  const importantNotesRef = useRef();
   const prevImportantNotes = () => {
-    importantNotesRef.current.tns.goTo('prev')
-  }
+    importantNotesRef.current.tns.goTo("prev");
+  };
   const nextImportantNotes = () => {
-    importantNotesRef.current.tns.goTo('next')
-  }
+    importantNotesRef.current.tns.goTo("next");
+  };
 
   useEffect(() => {
-    //console.log("@@@",coinsPrice)
-  }, [coinsPrice])
+    setCoin(coinsPrice[0]);
+  }, [coinsPrice[0]]);
+
+  useEffect(() => {
+    // console.log(coin);
+  }, [coin]);
 
   return (
     <>
@@ -243,13 +247,15 @@ function Main() {
                   <h2 className="text-lg font-medium truncate mr-5">
                     Green Coin
                   </h2>
-                  <h2 className="text-lg font-medium truncate mr-5">{1}</h2>
+                  <div className="mt-1.5 flex items-center">
+                    <ChangeLabel coin={coin} text={"text-2xl"}></ChangeLabel>
+                  </div>
                 </div>
                 <div className="">
                   <CandleChart
                     candles={candles}
-                    exchange={'서울거래소'}
-                    code={'KRW-BTC'}
+                    exchange={"서울거래소"}
+                    code={"KRW-BTC"}
                   ></CandleChart>
                 </div>
               </div>
@@ -277,7 +283,7 @@ function Main() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default Main
+export default Main;

@@ -131,7 +131,7 @@ function Main(props) {
                         <img
                           alt="Midone Tailwind HTML Admin Template"
                           className="rounded-full"
-                          src={faker.photos[0]}
+                          src={faker.photos[1]}
                         />
                       </div>
                       <div className="ml-3">{faker.users[0].name}</div>
@@ -212,6 +212,14 @@ function Main(props) {
           </Dropdown>
           {/* END: Notifications */}
           {/* BEGIN: Account Menu */}
+          {/* @@@@@@@@@@@@@@@@@@@@@@ */}
+
+          <button className="btn intro-x  z-50 rounded-lg border-white border-2 bg-transparent py-4 px-3 mr-4 min-w-fit h-full text-white font-bold cursor-pointer">
+            로그인
+          </button>
+          <button className="btn intro-x  z-50 rounded-lg border-white border-2 bg-transparent py-4 px-3 mr-4 min-w-fit h-full text-white font-bold cursor-pointer">
+            회원가입
+          </button>
           <Dropdown className="intro-x w-8 h-8">
             <DropdownToggle
               tag="div"

@@ -1,10 +1,11 @@
-import React, { useEffect, useRef } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import React, { useEffect, useRef } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import ChangeLabel from "../views/dashboard-overview-main/ChangeLabel";
 
 const PricePanel = (props) => {
   // console.log("랜더링횟수");
-  const dispatch = useDispatch()
-  const { isSelect, setIsSelect, coinsPrice, coin } = props
+  const dispatch = useDispatch();
+  const { isSelect, setIsSelect, coinsPrice, coin } = props;
   const {
     code,
     trade_price,
@@ -14,22 +15,22 @@ const PricePanel = (props) => {
     acc_trade_price_24h,
     name,
     exchange,
-  } = coin
+  } = coin;
 
-  const upDown = change === 'RISE' ? '+' : '-'
-  const changeRate = `${upDown} ${(change_rate * 100).toFixed(2)} %`
-  const panelRef = useRef()
+  const upDown = change === "RISE" ? "+" : "-";
+  const changeRate = `${upDown} ${(change_rate * 100).toFixed(2)} %`;
+  const panelRef = useRef();
 
   const clickHandler = () => {
     if (coinsPrice?.code === code) {
-      setIsSelect(!isSelect)
+      setIsSelect(!isSelect);
     } else if (coinsPrice?.code !== code) {
-      setIsSelect(true)
+      setIsSelect(true);
     } else {
-      setIsSelect(!isSelect)
+      setIsSelect(!isSelect);
     }
     dispatch({
-      type: 'SELECT_COIN',
+      type: "SELECT_COIN",
       payload: {
         code,
         trade_price,
@@ -40,21 +41,21 @@ const PricePanel = (props) => {
         name,
         exchange,
       },
-    })
-  }
+    });
+  };
 
   useEffect(() => {
     //panelRef.current.classList.add('animate-wiggle-once')
-    upDown === '+'
-      ? panelRef.current.classList.add('animate-blink-border-red')
-      : panelRef.current.classList.add('animate-blink-border-blue')
-  }, [trade_price])
+    upDown === "+"
+      ? panelRef.current.classList.add("animate-blink-border-red")
+      : panelRef.current.classList.add("animate-blink-border-blue");
+  }, [trade_price]);
 
   const anmatieEndHandler = () => {
     //panelRef.current.classList.remove('animate-wiggle-once')
-    panelRef.current.classList.remove('animate-blink-border-red')
-    panelRef.current.classList.remove('animate-blink-border-blue')
-  }
+    panelRef.current.classList.remove("animate-blink-border-red");
+    panelRef.current.classList.remove("animate-blink-border-blue");
+  };
 
   return (
     <div
@@ -63,16 +64,12 @@ const PricePanel = (props) => {
       onClick={clickHandler}
       ref={panelRef}
     >
-      <div className="pointer-events-none  z-0">{exchange}</div>
+      <div className="pointer-events-none z-0">{exchange}</div>
       {/* <img src={imgUrl}></img> */}
-      <div className="pointer-events-none  z-0">{trade_price}</div>
-      <div
-        className={`${upDown === '+' ? 'text-red-300' : 'text-blue-300'} z-0`}
-      >
-        ({changeRate})
-      </div>
-    </div>
-  )
-}
 
-export default React.memo(PricePanel)
+      <ChangeLabel coin={coin} text={"text-lg"}></ChangeLabel>
+    </div>
+  );
+};
+
+export default React.memo(PricePanel);

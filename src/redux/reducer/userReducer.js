@@ -3,6 +3,7 @@ const initState = {
   wallets: [],
   recycles: [],
   exchangeTransactions: [],
+  currentTransaction: {},
 };
 
 const userReducer = (state = initState, action) => {
@@ -25,14 +26,6 @@ const userReducer = (state = initState, action) => {
       return {
         ...state,
         recycles: payload,
-      };
-
-    case "ADD_TRANSACTION":
-      if (state.exchangeTransactions.length >= 5)
-        state.exchangeTransactions.pop();
-      return {
-        ...state,
-        exchangeTransactions: [payload, ...state.exchangeTransactions],
       };
 
     case "CHANGE_TRANSACTION":

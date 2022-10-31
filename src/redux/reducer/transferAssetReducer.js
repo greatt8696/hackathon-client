@@ -10,6 +10,7 @@ const transferAssetReducer = (state = initState, action) => {
       if (state.assetTransactions.length >= 180) state.assetTransactions.pop();
       return {
         ...state,
+        currentTransaction: payload,
         assetTransactions: [payload, ...state.assetTransactions],
       };
 

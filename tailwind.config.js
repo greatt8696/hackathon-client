@@ -1,4 +1,3 @@
-
 const colors = require("tailwindcss/colors");
 const {
   toRGB,
@@ -112,8 +111,8 @@ module.exports = {
         "blink-border-blue": "blink-border-blue 0.2s linear 1",
         "blink-text-red": "blink-text-red 0.2s linear 1",
         "blink-text-blue": "blink-text-blue 0.2s linear 1",
-        "blink-ba-red": "blink-ba-red 0.3s ease-in-out 1",
-        "blink-ba-blue": "blink-ba-blue 0.3s ease-in-out 1",
+        "blink-ba-red": "blink-ba-red 0.1s ease-in-out 1",
+        "blink-ba-blue": "blink-ba-blue 0.1s ease-in-out 1",
         "ping-once": "ping-once 0.8s ease 1",
       },
 
@@ -128,25 +127,33 @@ module.exports = {
           "0%, 100%": {
             "background-color": "transparent",
           },
-          "50%": { "background-color": "#1d5cc5", },
+          "50%": { "background-color": "#1d5cc5" },
         },
         "blink-red": {
           "0%, 100%": {
             "background-color": "transparent",
           },
-          "50%": { "background-color": "#e6285a", },
+          "50%": { "background-color": "#e6285a" },
+        },
+        "blink-ba-blue": {
+          "0%, 100%": { color: "#1d5cc5", "background-color": "transparent" },
+          "50%": { color: "white", "background-color": "#1d5cc5" },
+        },
+        "blink-ba-red": {
+          "0%, 100%": { color: "#e6285a", "background-color": "transparent" },
+          "50%": { color: "white", "background-color": "#e6285a" },
         },
         "blink-border-blue": {
           "0%, 100%": {
             "border-color": "none",
           },
-          "50%": { "border-color": "#1d5cc5", },
+          "50%": { "border-color": "#1d5cc5" },
         },
         "blink-border-red": {
           "0%, 100%": {
             "border-color": "none",
           },
-          "50%": { "border-color": "#e6285a", },
+          "50%": { "border-color": "#e6285a" },
         },
 
         "blink-bar-blue": {
@@ -163,15 +170,15 @@ module.exports = {
         },
 
         "blink-text-blue": {
-          "0%, 100%": { color: "white", transform: "scale(1)" },
-          "50%": { color: "#1d5cc5", transform: "scale(1.2)" },
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { color: "#1d5cc5", transform: "scale(1.1)" },
         },
         "blink-text-red": {
-          "0%, 100%": { color: "white", transform: "scale(1)" },
-          "50%": { color: "#e6285a", transform: "scale(1.2)" },
+          "0%, 100%": { transform: "scale(1)" },
+          "50%": { color: "#e6285a", transform: "scale(1.1)" },
         },
         "ping-once": {
-          "0%": { opacity: 80 , transform: "scale(1)" },
+          "0%": { opacity: 80, transform: "scale(1)" },
           "50%": { opacity: 0, transform: "scale(2.2)" },
           "100%": { opacity: 0, transform: "scale(1)" },
         },
