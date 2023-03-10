@@ -27,5 +27,5 @@ export default defineConfig({
     },
   },
   // base: '/hackathon-client/',
-  base: "./",
+  base: "/<REPO>/",
 });
