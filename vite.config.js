@@ -26,5 +26,6 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  base: '/hackathon-client/',
+  // base: '/hackathon-client/',
+  base: "./",
 });
